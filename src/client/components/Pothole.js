@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 export default class Pothole extends Component {
   constructor(props) {
@@ -15,7 +16,7 @@ export default class Pothole extends Component {
     this.submitComment = this.submitComment.bind(this);
   }
   // needs state because commenting will effect this component
-  // this probably doesnt need items in props on state (image, description, rating, location, progress?)
+  // this probably doesnt need items in props on state (image, description, rating, location)
 
   setComment(event) {
     this.setState({
@@ -64,9 +65,16 @@ export default class Pothole extends Component {
         <br />
         <form>
           <textarea rows="4" cols="50" name="comment" onChange={this.setComment} placeholder="Comment here..." />
-          <button type="submit" onClick={this.submitComment}>Send Comment</button>
+          <button type="button" onClick={this.submitComment}>Send Comment</button>
         </form>
       </div>
     );
   }
 }
+
+Pothole.propTypes = {
+  image: PropTypes.string.isRequired,
+  description: PropTypes.string.isRequired,
+  rating: PropTypes.number.isRequired,
+  location: PropTypes.string.isRequired
+};

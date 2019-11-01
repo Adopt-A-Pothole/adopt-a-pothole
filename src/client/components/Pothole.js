@@ -16,7 +16,7 @@ export default class Pothole extends Component {
     this.submitComment = this.submitComment.bind(this);
   }
   // needs state because commenting will effect this component
-  // this probably doesnt need items in props on state (image, description, rating, location)
+  // this probably doesnt need image, description, rating, and location on state
 
   setComment(event) {
     this.setState({

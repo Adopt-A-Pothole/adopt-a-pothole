@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Rating from 'react-rating';
 import axios from 'axios';
 
 export default class CreatePothole extends Component {
@@ -6,7 +7,7 @@ export default class CreatePothole extends Component {
     super(props);
     this.state = {
       address: null,
-      severity: null,
+      severity: 0,
       description: null,
       image: null,
     };
@@ -14,11 +15,20 @@ export default class CreatePothole extends Component {
     this.handleAddress = this.handleAddress.bind(this);
     this.handleDescription = this.handleDescription.bind(this);
     this.handleImage = this.handleImage.bind(this);
+    this.handleRating = this.handleRating.bind(this);
   }
 
   // handle form submit
   handleSubmit() {
+    const formData = this.state;
     // send post request to /potholes
+    axios.post('/potholes', { formData })
+      .then(() => {
+        console.log('pothole created');
+      })
+      .catch(() => {
+        console.log('something went wrong');
+      });
   }
 
   // handle address change
@@ -30,6 +40,12 @@ export default class CreatePothole extends Component {
   }
 
   // handle severity score
+  handleRating(event) {
+    const severity = event;
+    this.setState({
+      severity,
+    });
+  }
 
   // handle description change
   handleDescription(event) {
@@ -53,7 +69,9 @@ export default class CreatePothole extends Component {
       handleAddress,
       handleDescription,
       handleImage,
+      handleRating,
     } = this;
+    const { severity } = this.state;
     return (
       <div>
         <hr />
@@ -61,15 +79,22 @@ export default class CreatePothole extends Component {
         <h3>Type in Address of Pothole</h3>
         <input type="text" onChange={handleAddress} />
         <h3>How Bad is it?</h3>
-        <button type="submit">Small</button>
-        <button type="submit">Medium</button>
-        <button type="submit">Big as Hell</button>
+        <Rating
+          stop={3}
+          placeholderRating={severity}
+          onClick={handleRating}
+        />
         <h3>Picture url</h3>
         <input type="text" onChange={handleImage} />
         <h3>Description</h3>
         <input type="text" onChange={handleDescription} />
         <div>
-          <button onClick={handleSubmit} type="submit">Report Pothole</button>
+          <button
+            onClick={handleSubmit}
+            type="submit"
+          >
+            Report Pothole
+          </button>
         </div>
         <hr />
       </div>

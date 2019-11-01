@@ -6,7 +6,23 @@ const routes = Router();
 const { User, Pothole } = require('./db/index');
 
 routes.post('/potholes', (req, res) => {
-  console.log('boom');
+  Pothole.create({
+    longitude: 29.9511,
+    latitude: 90.0715,
+    severity: 10,
+    description: 'Its BIG!',
+    fill_cost: 10000,
+    money_donated: 100.00,
+    filled: false,
+    image: ':)',
+  })
+    .then(() => {
+      res.send(201);
+    })
+    .catch((err) => {
+      console.error(err);
+      res.send(500);
+    });
 });
 
 routes.get('/potholes', (req, res) => {

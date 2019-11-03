@@ -6,8 +6,6 @@ const routes = Router();
 const { User, Pothole } = require('./db/index');
 
 routes.post('/potholes', (req, res) => {
-  const {address, severity, image, description} = req.body.formData;
-  // get rid of mock data
   Pothole.create({
     longitude: 29.9511,
     latitude: 90.0715,

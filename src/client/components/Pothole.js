@@ -5,15 +5,12 @@ export default class Pothole extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      image: null,
-      description: null,
-      rating: null,
-      location: null,
       comment: null,
-      progress: null,
+      // progress: null,
     };
     this.setComment = this.setComment.bind(this);
     this.submitComment = this.submitComment.bind(this);
+    this.handleDonation = this.handleDonation.bind(this);
   }
   // needs state because commenting will effect this component
   // this probably doesnt need image, description, rating, and location on state

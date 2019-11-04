@@ -1,5 +1,20 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './components/App';
+import { Route, Link, BrowserRouter as Router } from 'react-router-dom';
 
-ReactDOM.render(<App />, document.getElementById('root'));
+
+import App from './components/App';
+import CreatePothole from './components/CreatePothole';
+import Pothole from './components/Pothole';
+
+const routing = (
+  <Router>
+    <div>
+      <Route exact path="/" component={App} />
+      <Route path="/create" component={CreatePothole} />
+      <Route path="/pothole" component={Pothole} />
+    </div>
+  </Router>
+);
+
+ReactDOM.render(routing, document.getElementById('root'));

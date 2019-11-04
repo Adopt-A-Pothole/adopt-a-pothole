@@ -23,6 +23,7 @@
     "react": "^16.5.2",
     "react-dom": "^16.5.2",
     "react-rating": "^2.0.0",
+    "react-router-dom": "^5.1.2",
     "sequelize": "^5.21.2"
   },
   "devDependencies": {

@@ -18,6 +18,7 @@ export default class App extends Component {
         location: 'The street',
       },
     };
+    this.setPothole = this.setPothole.bind(this);
   }
 
   componentDidMount() {

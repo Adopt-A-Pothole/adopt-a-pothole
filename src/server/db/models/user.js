@@ -8,5 +8,4 @@ module.exports = (sequelize, type) => {
     full_name: type.STRING,
     email: type.STRING,
   });
-
 };

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { Card, Image, Container, Rating, Progress } from 'semantic-ui-react';
 
 export default class Pothole extends Component {
   constructor(props) {
@@ -41,29 +42,31 @@ export default class Pothole extends Component {
 
     return (
       <div id="pothole-profile">
-        <img src={image} alt="pothole_image" />
-
-        <p>
-          Description:
-          {description}
-          <br />
-          <br />
-          Location:
-          {location}
-        </p>
-
-        <p>
-          Rating:
-          {rating}
-        </p>
-
-        <button type="button" onClick={this.handleDonation}>Donate Here</button>
-        <br />
-        <br />
-        <form>
-          <textarea rows="4" cols="50" name="comment" onChange={this.setComment} placeholder="Comment here..." />
-          <button type="button" onClick={this.submitComment}>Send Comment</button>
-        </form>
+        <Container textAlign="center">
+          <Card className="ui centered card">
+            <Image src={image} wrapped ui={false} />
+            <Card.Content>
+              <Card.Header>Axle-breaker</Card.Header>
+              <Card.Meta>
+                <span className="date">{location}</span>
+              </Card.Meta>
+              <Card.Description>
+                {description}
+              </Card.Description>
+            </Card.Content>
+            <Card.Content>
+              <p>How bad is it?</p>
+              <Rating defaultRating={rating} maxRating={3} disabled />
+            </Card.Content>
+            <Card.Content extra>
+              <button type="button" className="ui primary button" onClick={this.handleDonation}>Donate Here</button>
+            </Card.Content>
+            <Card.Content>
+              <p>Percent Funded: </p>
+              <Progress percent={60} progress indicating />
+            </Card.Content>
+          </Card>
+        </Container>
       </div>
     );
   }

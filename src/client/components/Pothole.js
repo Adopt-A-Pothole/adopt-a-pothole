@@ -67,18 +67,6 @@ export default class Pothole extends Component {
             </Card.Content>
           </Card>
         </Container>
-        <p>
-          Rating:
-          {rating}
-        </p>
-
-        
-        <br />
-        <br />
-        <form>
-          <textarea rows="4" cols="50" name="comment" onChange={this.setComment} placeholder="Comment here..." />
-          <button type="button" onClick={this.submitComment}>Send Comment</button>
-        </form>
       </div>
     );
   }

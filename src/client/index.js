@@ -14,12 +14,6 @@ const routing = (
         <li>
           <Link to="/">Home</Link>
         </li>
-        {/* <li>
-          <Link to="/create">Add a Pothole</Link>
-        </li> */}
-        {/* <li>
-          <Link to="/pothole">Pothole</Link>
-        </li> */}
       </ul>
       <Route exact path="/" component={App} />
       <Route path="/create" component={CreatePothole} />

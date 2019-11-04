@@ -12,7 +12,7 @@ export default class App extends Component {
       // pothole: null, // this will be an object
       // Example info
       pothole: {
-        image: 'public/big-pothole-card.jpg',
+        image: 'https://res.cloudinary.com/adopt-a-pothole/image/upload/v1572899303/potholes/big-pothole-card_mkzzjc.jpg',
         description: 'Hello, I am here to flatten your tires',
         rating: 2,
         location: 'The street',

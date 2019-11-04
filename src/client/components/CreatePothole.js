@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Rating from 'react-rating';
 import axios from 'axios';
+import UploadPothole from './UploadPothole';
 
 export default class CreatePothole extends Component {
   constructor(props) {
@@ -95,6 +96,7 @@ export default class CreatePothole extends Component {
           >
             Report Pothole
           </button>
+          <UploadPothole />
         </div>
         <hr />
       </div>

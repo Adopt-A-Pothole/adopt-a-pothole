@@ -10,6 +10,7 @@ export default class Pothole extends Component {
     };
     this.setComment = this.setComment.bind(this);
     this.submitComment = this.submitComment.bind(this);
+    this.handleDonation = this.handleDonation.bind(this);
   }
   // needs state because commenting will effect this component
   // this probably doesnt need image, description, rating, and location on state

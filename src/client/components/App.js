@@ -12,7 +12,7 @@ export default class App extends Component {
       // pothole: null, // this will be an object
       // Example info
       pothole: {
-        image: '../../../public/favicon.ico',
+        image: 'public/big-pothole-card.jpg',
         description: 'Hello, I am here to flatten your tires',
         rating: 2,
         location: 'The street',

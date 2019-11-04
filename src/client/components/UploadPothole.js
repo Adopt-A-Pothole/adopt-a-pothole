@@ -13,7 +13,13 @@ export default class UploadPothole extends Component {
   }
 
   componentDidMount() {
-    axios.get('https://res.cloudinary.com/')
+    axios.get('https://res.cloudinary.com/adopt-a-pothole/image/upload/sample.jpg')
+      .then((res) => {
+        console.log(res.data.resources);
+        this.setState({
+          gallery: res.data.resources
+        });
+      });
   }
 
   uploadWidget() {

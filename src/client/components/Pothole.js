@@ -1,17 +1,28 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Card, Image, Container, Rating, Progress } from 'semantic-ui-react';
+import {
+  Card,
+  Image,
+  Container,
+  Rating,
+  Progress
+} from 'semantic-ui-react';
+import axios from 'axios';
 
 export default class Pothole extends Component {
   constructor(props) {
     super(props);
     this.state = {
       comment: null,
+      donationForm: false,
+      donation: 0,
       // progress: null,
     };
     this.setComment = this.setComment.bind(this);
     this.submitComment = this.submitComment.bind(this);
     this.handleDonation = this.handleDonation.bind(this);
+    this.toggleDonation = this.toggleDonation.bind(this);
+    this.handleDonationInput = this.handleDonationInput.bind(this);
   }
   // needs state because commenting will effect this component
   // this probably doesnt need image, description, rating, and location on state
@@ -27,9 +38,29 @@ export default class Pothole extends Component {
     // probably post comment to specific pothole
   }
 
+  toggleDonation() {
+    let { donationForm } = this.state;
+    donationForm = !donationForm;
+    this.setState({
+      donationForm,
+    });
+  }
+
   handleDonation() {
-    // whatever needs to happen for donations, assuming location may be needed
-    const { location } = this.props;
+    const { donation } = this.state;
+    // grab pothole id and input value
+    axios.post('/donate', { donation, location: 'POTHOLE ID HERE'})
+      .then(() => {
+        console.log('Donation Complete');
+        this.toggleDonation();
+      });
+  }
+
+  handleDonationInput(event) {
+    const donation = event.target.value;
+    this.setState({
+      donation,
+    });
   }
 
   render() {
@@ -39,6 +70,7 @@ export default class Pothole extends Component {
       rating,
       location
     } = this.props;
+    const { donationForm } = this.state;
 
     return (
       <div id="pothole-profile">
@@ -59,7 +91,20 @@ export default class Pothole extends Component {
               <Rating defaultRating={rating} maxRating={3} disabled />
             </Card.Content>
             <Card.Content extra>
-              <button type="button" className="ui primary button" onClick={this.handleDonation}>Donate Here</button>
+              <button
+                type="button"
+                className="ui primary button"
+                onClick={this.toggleDonation}
+              >
+                  Donate
+              </button>
+              {donationForm ? (
+                <div>
+                  <input type="text" placeholder="How much?" onChange={this.handleDonationInput} />
+                  <button type="button" onClick={this.handleDonation}>Pay with Paypal</button>
+                </div>
+              )
+                : <div />}
             </Card.Content>
             <Card.Content>
               <p>Percent Funded: </p>

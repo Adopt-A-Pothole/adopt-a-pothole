@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Link, BrowserRouter as Router } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import axios from 'axios';
 import '../app.css';
 import Pothole from './Pothole';
@@ -24,8 +24,7 @@ export default class App extends Component {
     axios.get('/pothole')
       .then((response) => {
         this.setPothole(response.body);
-      })
-      .catch(err => console.error(err));
+      });
   }
 
   setPothole(pothole) {
@@ -39,8 +38,7 @@ export default class App extends Component {
     return axios.get('/pothole')
       .then((response) => {
         this.setPothole(response.body);
-      })
-      .catch(err => console.error(err));
+      });
   }
 
   render() {

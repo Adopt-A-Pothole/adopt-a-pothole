@@ -42,6 +42,7 @@ export default class App extends Component {
   render() {
     return (
       <div>
+        <Link id="CreatePothole" to="/create">Add A Pothole</Link>
         <Pothole image={image} description={description} rating={rating} location={location} />
       </div>
     );

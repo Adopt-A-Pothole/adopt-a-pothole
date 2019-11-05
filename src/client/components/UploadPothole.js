@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-// import { CloudinaryContext, Transformation, Image } from 'cloudinary-react';
+
 
 export default class UploadPothole extends Component {
   constructor() {

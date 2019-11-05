@@ -55,7 +55,7 @@ export default class App extends Component {
     //   description,
     //   rating,
     //   location
-    // } = pothole; //!Array.isArray(potholes)
+    // } = pothole;
 
     if (potholes !== null && potholes.length) {
       mappedPotholes = potholes.map(mappedPothole => (

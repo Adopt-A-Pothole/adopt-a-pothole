@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import { Route, Link, BrowserRouter as Router } from 'react-router-dom';
 // semantic ui import
 import 'semantic-ui-css/semantic.min.css';
+import { Menu } from 'semantic-ui-react';
 
 
 import App from './components/App';
@@ -12,11 +13,11 @@ import Pothole from './components/Pothole';
 const routing = (
   <Router>
     <div>
-      <ul>
-        <li>
+      <Menu>
+        <Menu.Item>
           <Link to="/">Home</Link>
-        </li>
-      </ul>
+        </Menu.Item>
+      </Menu>
       <Route exact path="/" component={App} />
       <Route path="/create" component={CreatePothole} />
       <Route path="/pothole" component={Pothole} />

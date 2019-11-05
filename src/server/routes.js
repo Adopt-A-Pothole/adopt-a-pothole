@@ -179,18 +179,23 @@ routes.get('/cancel', (req, res) => {
   res.redirect('/');
 });
 
-/*
+
 routes.get('/pothole', (req, res) => {
   // req body to include location
   if (!req.body.location) {
-    // get single pothole
+    // send 3 potholes to map over
     return Pothole.findAll()
-      .then(potholes => res.send(potholes[0]))
+      .then(potholes => res.send(potholes.slice(0, 3)))
       .catch(err => console.error(err));
   }
+  // parse location and convert to longitude/latitude
+  let longitude;
+  let latitude;
+  return Pothole.findOne({ where: { longitude, latitude } })
+    .then(pothole => res.send(pothole));
   // get pothole from db based on location
 });
-*/
+
 
 routes.get('/create', (req, res) => {
   res.redirect('/');

@@ -9,23 +9,28 @@ export default class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      // pothole: null, // this will be an object
+      pothole: null, // this will be an object
+      potholes: null,
       // Example info
-      pothole: {
-        image: 'https://res.cloudinary.com/adopt-a-pothole/image/upload/v1572899303/potholes/big-pothole-card_mkzzjc.jpg',
-        description: 'Hello, I am here to flatten your tires',
-        rating: 2,
-        location: 'The street',
-      },
+      // pothole: {
+      //   image: 'https://res.cloudinary.com/adopt-a-pothole/image/upload/v1572899303/potholes/big-pothole-card_mkzzjc.jpg',
+      //   description: 'Hello, I am here to flatten your tires',
+      //   rating: 2,
+      //   location: 'The street',
+      // },
     };
     this.setPothole = this.setPothole.bind(this);
   }
 
   componentDidMount() {
-    // axios.get('/pothole')
-    //   .then((response) => {
-    //     this.setPothole(response.body);
-    //   });
+    axios.get('/pothole')
+      .then((response) => {
+        console.log(response.body);
+        this.setState({
+          potholes: response.body,
+        });
+        // this.setPothole(response.body);
+      });
   }
 
   setPothole(pothole) {
@@ -34,7 +39,7 @@ export default class App extends Component {
     });
   }
 
-  // maybe pass parameters here to get a new pothole
+  // pass location into request body to get specific pothole
   getPothole() {
     return axios.get('/pothole')
       .then((response) => {

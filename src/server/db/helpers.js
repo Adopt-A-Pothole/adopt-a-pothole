@@ -27,7 +27,7 @@ const savePothole = req => Pothole.create({
 const saveDonation = req => Donation.create({
   amount: req.amount,
   email: req.email,
-  pothole_id: req.id
+  pothole_id: req.pothole_id
 });
 
 module.exports.saveDonation = saveDonation;

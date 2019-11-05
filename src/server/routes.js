@@ -161,14 +161,21 @@ routes.get('/cancel', (req, res) => {
   res.redirect('/');
 });
 
+/*
 routes.get('/pothole', (req, res) => {
   // req body to include location
-  // if (!req.body.location) {
-  //   // get single pothole
-  //   // res.send(pothole)
-  // } else {
-  //   // get pothole from db based on location
-  // }
+  if (!req.body.location) {
+    // get single pothole
+    return Pothole.findAll()
+      .then(potholes => res.send(potholes[0]))
+      .catch(err => console.error(err));
+  }
+  // get pothole from db based on location
 });
+*/
+
+// routes.get('*', (req, res) => {
+//
+// });
 
 module.exports = { routes };

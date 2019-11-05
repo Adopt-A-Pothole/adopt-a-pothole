@@ -9,23 +9,27 @@ export default class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      // pothole: null, // this will be an object
+      pothole: null, // this will be an object
+      potholes: null,
       // Example info
-      pothole: {
-        image: 'https://res.cloudinary.com/adopt-a-pothole/image/upload/v1572899303/potholes/big-pothole-card_mkzzjc.jpg',
-        description: 'Hello, I am here to flatten your tires',
-        rating: 2,
-        location: 'The street',
-      },
+      // pothole: {
+      //   image: 'https://res.cloudinary.com/adopt-a-pothole/image/upload/v1572899303/potholes/big-pothole-card_mkzzjc.jpg',
+      //   description: 'Hello, I am here to flatten your tires',
+      //   rating: 2,
+      //   location: 'The street',
+      // },
     };
     this.setPothole = this.setPothole.bind(this);
   }
 
   componentDidMount() {
-    // axios.get('/pothole')
-    //   .then((response) => {
-    //     this.setPothole(response.body);
-    //   });
+    axios.get('/pothole')
+      .then((response) => {
+        this.setState({
+          potholes: response.data,
+        });
+        // this.setPothole(response.body);
+      });
   }
 
   setPothole(pothole) {
@@ -34,7 +38,7 @@ export default class App extends Component {
     });
   }
 
-  // maybe pass parameters here to get a new pothole
+  // pass location into request body to get specific pothole
   getPothole() {
     return axios.get('/pothole')
       .then((response) => {
@@ -44,18 +48,37 @@ export default class App extends Component {
 
   render() {
     // get props from pothole object to pass to Pothole component
-    const { pothole } = this.state;
-    const {
-      image,
-      description,
-      rating,
-      location
-    } = pothole;
+    const { pothole, potholes } = this.state;
+    let mappedPotholes;
+    // const {
+    //   image,
+    //   description,
+    //   rating,
+    //   location
+    // } = pothole;
+
+    if (potholes !== null) {
+      mappedPotholes = potholes.map(mappedPothole => (
+        <div>
+          <Pothole
+            image={mappedPothole.image}
+            description={mappedPothole.description}
+            rating={mappedPothole.severity}
+            location={mappedPothole.location}
+            progress={Math.floor((mappedPothole.fill_cost / mappedPothole.money_donated) * 10)}
+          />
+          <br />
+        </div>
+      ));
+    } else {
+      mappedPotholes = <h3>Loading potholes...</h3>;
+    }
 
     return (
       <div>
         <Link id="CreatePothole" to="/create">Add A Pothole</Link>
-        <Pothole image={image} description={description} rating={rating} location={location} />
+        {mappedPotholes}
+        {/* <Pothole image={image} description={description} rating={rating} location={location} /> */}
       </div>
     );
   }

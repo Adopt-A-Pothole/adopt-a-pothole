@@ -65,6 +65,7 @@ export default class App extends Component {
             description={mappedPothole.description}
             rating={mappedPothole.severity}
             location={mappedPothole.location}
+            progress={Math.floor((mappedPothole.fill_cost / mappedPothole.money_donated) * 10)}
           />
           <br />
         </div>

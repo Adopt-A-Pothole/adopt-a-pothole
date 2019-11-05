@@ -16,7 +16,6 @@ export default class Pothole extends Component {
       comment: null,
       donationForm: false,
       donation: 0,
-      // progress: null,
     };
     this.setComment = this.setComment.bind(this);
     this.submitComment = this.submitComment.bind(this);
@@ -74,7 +73,8 @@ export default class Pothole extends Component {
       image,
       description,
       rating,
-      location
+      location,
+      progress,
     } = this.props;
     const { donationForm, donationMessage } = this.state;
 
@@ -114,7 +114,7 @@ export default class Pothole extends Component {
             </Card.Content>
             <Card.Content>
               <p>Percent Funded: </p>
-              <Progress percent={60} progress indicating />
+              <Progress percent={progress} progress indicating />
             </Card.Content>
           </Card>
         </Container>
@@ -127,5 +127,6 @@ Pothole.propTypes = {
   image: PropTypes.string.isRequired,
   description: PropTypes.string.isRequired,
   rating: PropTypes.number.isRequired,
-  location: PropTypes.string.isRequired
+  location: PropTypes.string.isRequired,
+  progress: PropTypes.number.isRequired,
 };

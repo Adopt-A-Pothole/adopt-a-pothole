@@ -25,9 +25,8 @@ export default class App extends Component {
   componentDidMount() {
     axios.get('/pothole')
       .then((response) => {
-        console.log(response.body);
         this.setState({
-          potholes: response.body,
+          potholes: response.data,
         });
         // this.setPothole(response.body);
       });
@@ -49,18 +48,36 @@ export default class App extends Component {
 
   render() {
     // get props from pothole object to pass to Pothole component
-    const { pothole } = this.state;
-    const {
-      image,
-      description,
-      rating,
-      location
-    } = pothole;
+    const { pothole, potholes } = this.state;
+    let mappedPotholes;
+    // const {
+    //   image,
+    //   description,
+    //   rating,
+    //   location
+    // } = pothole;
+
+    if (potholes !== null) {
+      mappedPotholes = potholes.map(mappedPothole => (
+        <div>
+          <Pothole
+            image={mappedPothole.image}
+            description={mappedPothole.description}
+            rating={mappedPothole.severity}
+            location={mappedPothole.location}
+          />
+          <br />
+        </div>
+      ));
+    } else {
+      mappedPotholes = <h3>Loading potholes...</h3>;
+    }
 
     return (
       <div>
         <Link id="CreatePothole" to="/create">Add A Pothole</Link>
-        <Pothole image={image} description={description} rating={rating} location={location} />
+        {mappedPotholes}
+        {/* <Pothole image={image} description={description} rating={rating} location={location} /> */}
       </div>
     );
   }

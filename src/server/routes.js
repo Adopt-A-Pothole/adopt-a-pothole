@@ -55,12 +55,12 @@ routes.post('/users', (req, res) => {
     .then((user) => {
       console.log(user);
       saveDonation(user);
+      res.sendStatus(201);
+      res.end();
     })
     .catch((err) => {
       console.log(err, 'errr');
     });
-  // res.sendStatus(201);
-  // res.end();
 });
 
 

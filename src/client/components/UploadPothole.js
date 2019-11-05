@@ -1,14 +1,10 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import { CloudinaryContext, Transformation, Image } from 'cloudinary-react';
+// import { CloudinaryContext, Transformation, Image } from 'cloudinary-react';
 
 export default class UploadPothole extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      gallery: [],
-    };
-
+  constructor() {
+    super();
     this.uploadWidget = this.uploadWidget.bind(this);
   }
 

@@ -1,12 +1,13 @@
 // require models
 
-const { User, Pothole } = require('./index');
+const { User, Pothole, Donation } = require('./index');
 
 // save user to the database
 const saveUser = req => User.create({
   id: req.id,
   full_name: req.full_name,
   email: req.email,
+  amount: req.amount,
   createdAt: req.createAt,
   updatedAt: req.updatedAt
 });
@@ -25,6 +26,13 @@ const savePothole = req => Pothole.create({
   createdAt: req.createdAt
 });
 
+const saveDonation = req => Donation.create({
+  id: req.id,
+  amount: req.amount,
+  email: req.email,
+  user_id: req.id
+});
 
+module.exports.saveDonation = saveDonation;
 module.exports.savePothole = savePothole;
 module.exports.saveUser = saveUser;

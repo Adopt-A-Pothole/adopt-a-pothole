@@ -4,7 +4,7 @@ const routes = Router();
 
 // require models
 const { User, Pothole } = require('./db/index');
-const { saveUser, savePothole } = require('./db/helpers');
+const { saveUser, savePothole, saveDonation } = require('./db/helpers');
 
 
 routes.post('/potholes', (req, res) => {
@@ -50,9 +50,17 @@ routes.get('/users', (req, res) => {
 // post route to create a user
 routes.post('/users', (req, res) => {
   // save user to db
-  saveUser(req.body);
-  res.sendStatus(201);
-  res.end();
+  console.log(req.body);
+  return saveUser(req.body)
+    .then((user) => {
+      console.log(user);
+      saveDonation(user);
+    })
+    .catch((err) => {
+      console.log(err, 'errr');
+    });
+  // res.sendStatus(201);
+  // res.end();
 });
 
 

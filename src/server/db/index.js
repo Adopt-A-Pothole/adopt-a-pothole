@@ -32,7 +32,7 @@ const Donation = DonationModel(db, Sequelize);
 // define relationship between tables
 // this should create foreign key of userId for each pothole
 Pothole.belongsTo(User);
-Donation.hasOne(User, { foreignKey: 'userId' }); // These may not be needed
+Donation.belongsTo(User); // These may not be needed
 
 // create tables ({force: true} is for development only)
 // -- it drops tables every time server is restarted

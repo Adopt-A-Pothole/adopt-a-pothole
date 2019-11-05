@@ -2,11 +2,22 @@ const { Router } = require('express');
 
 const routes = Router();
 
+// paypal config (switch to env variables once tested)
+const paypal = require('paypal-rest-sdk');
+
+paypal.configure({
+  mode: 'sandbox', // Sandbox or live
+  client_id: 'AQic-X_Z6QO39MuFTk4tkDgFn-NT6bQo86zwTzml63H_DKV--l3il4XtsFy7aVKChAbB68t7agju55A_',
+  client_secret: 'EKxMY0t69kB7Ze5OHpzDJrVMMWY79fZ6NKbJYxYiGddvvNI8qGkkpfuDVCuW5mMdDs5HdRb58ZxstGYE'
+});
+
 // require models
 const { User, Pothole } = require('./db/index');
 
 routes.post('/potholes', (req, res) => {
-  const {address, severity, image, description} = req.body.formData;
+  const {
+    address, severity, image, description
+  } = req.body.formData;
   // get rid of mock data
   Pothole.create({
     longitude: 29.9511,
@@ -47,5 +58,84 @@ routes.post('/users', (req, res) => {
       res.send(500);
     });
 });
+
+// post route to make a paypal payment
+routes.post('/donate', (req, res) => {
+  // get payment amount
+  const { donation } = req.body;
+  // make sure donation is valid
+  if (isNaN(+donation) || +donation < 0) {
+    console.log('not a valid amount');
+    res.send('invalid');
+    return;
+  }
+  // create payment object
+  const create_payment_json = {
+    intent: 'sale',
+    payer: {
+      payment_method: 'paypal'
+    },
+    redirect_urls: {
+      return_url: 'http://localhost:8080/success',
+      cancel_url: 'http://localhost:8080/cancel'
+    },
+    transactions: [{
+      item_list: {
+        items: [{
+          name: 'big hole',
+          sku: '001',
+          currency: 'USD',
+          price: donation,
+          quantity: 1
+        }]
+      },
+      amount: {
+        currency: 'USD',
+        total: donation
+      },
+      description: 'This is the payment description.'
+    }]
+  };
+  // send payment object to paypal
+  paypal.payment.create(create_payment_json, (error, payment) => {
+    if (error) {
+      throw error;
+    } else {
+      // find approval url
+      for (let i = 0; i < payment.links.length; i++) {
+        if (payment.links[i].rel === 'approval_url') {
+          // send back url
+          res.send(payment.links[i].href);
+          // res.redirect(payment.links[i].href);
+        }
+      }
+    }
+  });
+});
+
+// handle successful payment
+routes.get('/success', (req, res) => {
+  const payerId = req.query.PayerID;
+  const { paymentId } = req.query;
+
+  const execute_payment_json = {
+    payer_id: payerId,
+  };
+
+  paypal.payment.execute(paymentId, execute_payment_json, (error, payment) => {
+    if (error) {
+      console.log(error.response);
+      throw error;
+    } else {
+      console.log(JSON.stringify(payment));
+      // need to save transaction to db;
+      // prompt a toast saying successful payment
+      res.redirect('/');
+    }
+  });
+});
+
+routes.get('/cancel', (req, res) => res.send('cancelled'));
+
 
 module.exports = { routes };

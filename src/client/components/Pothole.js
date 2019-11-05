@@ -48,11 +48,30 @@ export default class Pothole extends Component {
 
   handleDonation() {
     const { donation } = this.state;
+
+    // fetch('/donate', {
+    //   method: 'POST',
+    //   headers: {
+    //     'Accept': 'application/json',
+    //     'Content-Type': 'application/json',
+    //   },
+    //   body: JSON.stringify({
+    //     donation,
+    //   })
+    // });
+
+    axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
     // grab pothole id and input value
-    axios.post('/donate', { donation, location: 'POTHOLE ID HERE'})
-      .then(() => {
-        console.log('Donation Complete');
-        this.toggleDonation();
+    axios.post('/donate', { donation, location: 'POTHOLE ID HERE' })
+      .then((response) => {
+        if (response.data === 'invalid') {
+          console.log('payment unsuccessful');
+        } else {
+          // redirect to paypal
+          window.location.href = response.data;
+          console.log('payment was successful');
+          this.toggleDonation();
+        }
       });
   }
 
@@ -70,7 +89,7 @@ export default class Pothole extends Component {
       rating,
       location
     } = this.props;
-    const { donationForm } = this.state;
+    const { donationForm, donationMessage } = this.state;
 
     return (
       <div id="pothole-profile">
@@ -100,7 +119,7 @@ export default class Pothole extends Component {
               </button>
               {donationForm ? (
                 <div>
-                  <input type="text" placeholder="How much?" onChange={this.handleDonationInput} />
+                  <input type="text" placeholder="Donation ex. 10.50" onChange={this.handleDonationInput} />
                   <button type="button" onClick={this.handleDonation}>Pay with Paypal</button>
                 </div>
               )

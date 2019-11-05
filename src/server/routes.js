@@ -1,14 +1,20 @@
 const { Router } = require('express');
+require('dotenv').config();
 
 const routes = Router();
 
-// paypal config (switch to env variables once tested)
+// paypal config
 const paypal = require('paypal-rest-sdk');
+
+const {
+  paypal_client_id,
+  paypal_client_secret,
+} = process.env;
 
 paypal.configure({
   mode: 'sandbox', // Sandbox or live
-  client_id: 'AQic-X_Z6QO39MuFTk4tkDgFn-NT6bQo86zwTzml63H_DKV--l3il4XtsFy7aVKChAbB68t7agju55A_',
-  client_secret: 'EKxMY0t69kB7Ze5OHpzDJrVMMWY79fZ6NKbJYxYiGddvvNI8qGkkpfuDVCuW5mMdDs5HdRb58ZxstGYE'
+  client_id: paypal_client_id,
+  client_secret: paypal_client_secret
 });
 
 // require models
@@ -128,14 +134,18 @@ routes.get('/success', (req, res) => {
       throw error;
     } else {
       console.log(JSON.stringify(payment));
-      // need to save transaction to db;
-      // prompt a toast saying successful payment
+      // TODO need to save transaction to db;
+      // TODO prompt a toast saying successful payment
       res.redirect('/');
     }
   });
 });
 
-routes.get('/cancel', (req, res) => res.send('cancelled'));
+// send toast that transaction was canceled
+routes.get('/cancel', (req, res) => {
+  // TODO - handle toast message
+  res.redirect('/');
+});
 
 
 module.exports = { routes };

@@ -22,10 +22,10 @@ export default class App extends Component {
   }
 
   componentDidMount() {
-    axios.get('/pothole')
-      .then((response) => {
-        this.setPothole(response.body);
-      });
+    // axios.get('/pothole')
+    //   .then((response) => {
+    //     this.setPothole(response.body);
+    //   });
   }
 
   setPothole(pothole) {
@@ -54,6 +54,7 @@ export default class App extends Component {
 
     return (
       <div>
+        <Link id="CreatePothole" to="/create">Add A Pothole</Link>
         <Pothole image={image} description={description} rating={rating} location={location} />
       </div>
     );

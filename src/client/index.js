@@ -24,7 +24,6 @@ const routing = (
           <Link to="/create">Add A Pothole</Link>
         </Menu.Item>
       </Menu>
-      <Link id="CreatePothole" to="/create">Add A Pothole</Link>
       <Route exact path="/" component={App} />
       <Route path="/create" component={CreatePothole} />
       <Route path="/pothole" component={Pothole} />

@@ -3,6 +3,7 @@ require('dotenv').config();
 const Sequelize = require('sequelize');
 const UserModel = require('./models/user');
 const PotholeModel = require('./models/pothole');
+const DonationModel = require('./models/donation');
 
 // extract environment variables
 const {
@@ -26,10 +27,12 @@ const db = new Sequelize(database, user, pwd, options);
 // sequelize models
 const User = UserModel(db, Sequelize);
 const Pothole = PotholeModel(db, Sequelize);
+const Donation = DonationModel(db, Sequelize);
 
 // define relationship between tables
 // this should create foreign key of userId for each pothole
 Pothole.belongsTo(User);
+Donation.hasOne(User, { foreignKey: 'userId' }); // These may not be needed
 
 // create tables ({force: true} is for development only)
 // -- it drops tables every time server is restarted
@@ -42,4 +45,5 @@ db.sync({ force: true })
 module.exports = {
   User,
   Pothole,
+  Donation,
 };

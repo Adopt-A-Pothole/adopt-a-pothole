@@ -23,7 +23,6 @@ const { saveUser, savePothole, saveDonation } = require('./db/helpers');
 
 
 routes.post('/potholes', (req, res) => {
-  console.log(req);
   savePothole(req.body);
   res.sendStatus(200);
   res.end();

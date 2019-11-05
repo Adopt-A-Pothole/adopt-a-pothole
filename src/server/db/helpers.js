@@ -6,8 +6,6 @@ const saveUser = req => User.create({
   full_name: req.full_name,
   email: req.email,
   amount: req.amount,
-  createdAt: req.createAt,
-  updatedAt: req.updatedAt
 });
 
 
@@ -21,7 +19,6 @@ const savePothole = req => Pothole.create({
   money_donated: req.money_donated,
   filled: req.filled,
   image: req.image,
-  createdAt: req.createdAt
 });
 
 const saveDonation = req => Donation.create({

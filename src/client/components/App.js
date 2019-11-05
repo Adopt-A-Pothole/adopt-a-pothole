@@ -54,8 +54,6 @@ export default class App extends Component {
 
     return (
       <div>
-        <h1>Our App</h1>
-        <Link to="/create">Add a Pothole</Link>
         <Pothole image={image} description={description} rating={rating} location={location} />
       </div>
     );

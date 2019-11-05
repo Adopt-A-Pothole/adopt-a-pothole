@@ -22,10 +22,10 @@ export default class App extends Component {
   }
 
   componentDidMount() {
-    axios.get('/pothole')
-      .then((response) => {
-        this.setPothole(response.body);
-      });
+    // axios.get('/pothole')
+    //   .then((response) => {
+    //     this.setPothole(response.body);
+    //   });
   }
 
   setPothole(pothole) {

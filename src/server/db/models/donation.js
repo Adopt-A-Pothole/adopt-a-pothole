@@ -6,10 +6,10 @@ module.exports = (sequelize, type) => sequelize.define('donation', {
   },
   amount: type.DECIMAL(10, 2),
   email: type.STRING, // May need to reference user email as foreign key
-  user_id: {
+  pothole_id: {
     type: type.INTEGER,
     references: {
-      model: 'users', // Note, its table's name, not object name
+      model: 'pothole', // Note, its table's name, not object name
       key: 'id', // Note, its a column name
     }
   },

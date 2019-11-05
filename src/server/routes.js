@@ -193,8 +193,8 @@ routes.get('/pothole', (req, res) => {
 });
 */
 
-// routes.get('*', (req, res) => {
-//
-// });
+routes.get('/create', (req, res) => {
+  res.redirect('/');
+});
 
 module.exports = { routes };

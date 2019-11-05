@@ -19,13 +19,30 @@ export default class App extends Component {
   }
 
   componentDidMount() {
+    // axios.get('/pothole')
+    //   .then((response) => {
+    //     this.setPothole(response.body);
+    //   });
+  }
+
+  setPothole(pothole) {
+    this.setState({
+      pothole
+    });
+  }
+
+  // maybe pass parameters here to get a new pothole
+  getPothole() {
+    return axios.get('/pothole')
+      .then((response) => {
+        this.setPothole(response.body);
+      });
   }
 
   render() {
     return (
       <div>
-        <h1>Our App</h1>
-        <CreatePothole />
+        <Pothole image={image} description={description} rating={rating} location={location} />
       </div>
     );
   }

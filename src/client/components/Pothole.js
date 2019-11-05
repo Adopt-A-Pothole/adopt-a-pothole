@@ -48,19 +48,6 @@ export default class Pothole extends Component {
 
   handleDonation() {
     const { donation } = this.state;
-
-    // fetch('/donate', {
-    //   method: 'POST',
-    //   headers: {
-    //     'Accept': 'application/json',
-    //     'Content-Type': 'application/json',
-    //   },
-    //   body: JSON.stringify({
-    //     donation,
-    //   })
-    // });
-
-    axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
     // grab pothole id and input value
     axios.post('/donate', { donation, location: 'POTHOLE ID HERE' })
       .then((response) => {

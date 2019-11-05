@@ -103,7 +103,7 @@ routes.post('/donate', (req, res) => {
       item_list: {
         items: [{
           name: 'big hole',
-          sku: '001',
+          sku: '1',
           currency: 'USD',
           price: donation,
           quantity: 1
@@ -149,8 +149,27 @@ routes.get('/success', (req, res) => {
     } else {
       console.log(JSON.stringify(payment));
       // TODO need to save transaction to db;
+      payment;
+
+      const { email } = payment.payer.payer_info;
+      const { total } = payment.transactions[0].amount;
+      let { sku } = payment.transactions[0].item_list.items[0];
+      sku = parseInt(sku);
+      // save to db
+      const toSave = { amount: +total, email, pothole_id: sku };
+      saveDonation(toSave)
+        .then(() => {
+          // TODO send back success message
+          res.redirect('/');
+        })
+        .catch((err) => {
+          // TODO send back failure message
+          console.error(err);
+          res.redirect('/');
+        });
+      // amount -- email -- pothole_id
       // TODO prompt a toast saying successful payment
-      res.redirect('/');
+      
     }
   });
 });

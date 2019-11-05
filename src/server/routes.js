@@ -161,5 +161,14 @@ routes.get('/cancel', (req, res) => {
   res.redirect('/');
 });
 
+Router.get('/pothole', (req, res) => {
+  // req body to include location
+  if (!req.body.location) {
+    // get single pothole
+    // res.send(pothole)
+  } else {
+    // get pothole from db based on location
+  }
+});
 
 module.exports = { routes };

@@ -57,7 +57,7 @@ export default class App extends Component {
     //   location
     // } = pothole;
 
-    if (potholes !== null) {
+    if (potholes !== null && potholes.length) {
       mappedPotholes = potholes.map(mappedPothole => (
         <div>
           <Pothole
@@ -65,7 +65,7 @@ export default class App extends Component {
             description={mappedPothole.description}
             rating={mappedPothole.severity}
             location={mappedPothole.location}
-            progress={Math.floor((mappedPothole.fill_cost / mappedPothole.money_donated) * 10)}
+            progress={Math.floor((mappedPothole.money_donated / mappedPothole.fill_cost) * 100)}
           />
           <br />
         </div>

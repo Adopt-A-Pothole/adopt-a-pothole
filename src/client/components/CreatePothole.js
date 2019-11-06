@@ -58,7 +58,7 @@ export default class CreatePothole extends Component {
     axios.post('/potholes', { pothole })
       .then(() => {
         // TODO Message success
-        console.log('pothole created');
+        this.props.history.push('/');
       });
   }
 

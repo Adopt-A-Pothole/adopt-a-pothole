@@ -13,6 +13,7 @@ export default class App extends Component {
       potholes: null,
     };
     this.setPothole = this.setPothole.bind(this);
+    this.renderPothole = this.renderPothole.bind(this);
   }
 
   componentDidMount() {
@@ -21,8 +22,8 @@ export default class App extends Component {
         this.setState({
           potholes: response.data,
         });
-        // this.setPothole(response.body);
-      });
+      })
+      .then(() => this.setPotholes());
   }
 
   setPothole(pothole) {
@@ -35,19 +36,21 @@ export default class App extends Component {
   getPothole() {
     return axios.get('/pothole')
       .then((response) => {
+        // this pothole will need to be mapped or changed to be <Pothole />
+        // and pass props
         this.setPothole(response.body);
       });
   }
 
-  render() {
-    // get props from pothole object to pass to Pothole component
-    const { potholes } = this.state;
+  setPotholes() {
     let mappedPotholes;
-
+    const { potholes } = this.state;
     if (potholes !== null && potholes.length) {
-      mappedPotholes = potholes.map(mappedPothole => (
+      mappedPotholes = potholes.map((mappedPothole, index) => (
         <div>
           <Pothole
+            onClick={this.renderPothole}
+            index={index}
             image={mappedPothole.image}
             title={mappedPothole.title}
             description={mappedPothole.description}
@@ -58,14 +61,31 @@ export default class App extends Component {
           <br />
         </div>
       ));
+      this.setState({ potholes: mappedPotholes });
+      this.setState({ pothole: mappedPotholes[0] }); // set first pothole
     } else {
       mappedPotholes = <h3>Loading potholes...</h3>;
     }
+    return mappedPotholes;
+  }
+
+  renderPothole(index) {
+    const { potholes } = this.state;
+    if (index === 2) {
+      this.setState({ pothole: potholes[0] });
+    } else {
+      this.setState({ pothole: potholes[index + 1] });
+    }
+  }
+
+  render() {
+    // get props from pothole object to pass to Pothole component
+    const { pothole } = this.state;
 
     return (
       <div>
         <Link id="CreatePothole" to="/create">Add A Pothole</Link>
-        {mappedPotholes}
+        {pothole}
       </div>
     );
   }

@@ -5,7 +5,8 @@ import {
   Image,
   Container,
   Rating,
-  Progress
+  Progress,
+  Button,
 } from 'semantic-ui-react';
 import axios from 'axios';
 
@@ -119,7 +120,7 @@ export default class Pothole extends Component {
               <Progress percent={progress} progress indicating />
             </Card.Content>
           </Card>
-          <button type="button" onClick={() => { onClick(index); }}>Next</button>
+          <Button type="button" onClick={() => { onClick(index); }}>Next</Button>
         </Container>
       </div>
     );

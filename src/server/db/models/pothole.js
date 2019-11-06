@@ -8,6 +8,7 @@ module.exports = (sequelize, type) => {
     longitude: type.DECIMAL(10, 4),
     latitude: type.DECIMAL(10, 4),
     severity: type.INTEGER,
+    title: type.STRING,
     description: type.STRING,
     fill_cost: type.INTEGER,
     money_donated: type.DECIMAL(10, 2),

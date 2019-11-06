@@ -5,7 +5,8 @@ import {
   Image,
   Container,
   Rating,
-  Progress
+  Progress,
+  Button,
 } from 'semantic-ui-react';
 import axios from 'axios';
 
@@ -76,12 +77,15 @@ export default class Pothole extends Component {
       rating,
       location,
       progress,
+      index,
+      onClick
     } = this.props;
     const { donationForm, donationMessage } = this.state;
 
     return (
       <div id="pothole-profile">
         <Container textAlign="center">
+          <Button type="button" onClick={() => { onClick(index); }}>Next</Button>
           <Card className="ui centered card">
             <Image src={image} wrapped ui={false} />
             <Card.Content>

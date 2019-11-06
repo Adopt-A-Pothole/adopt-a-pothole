@@ -134,4 +134,7 @@ Pothole.propTypes = {
   rating: PropTypes.number.isRequired,
   location: PropTypes.string.isRequired,
   progress: PropTypes.number.isRequired,
+  index: PropTypes.number.isRequired,
+  title: PropTypes.string.isRequired,
+  onClick: PropTypes.func.isRequired,
 };

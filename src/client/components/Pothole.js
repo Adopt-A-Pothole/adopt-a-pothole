@@ -85,6 +85,7 @@ export default class Pothole extends Component {
     return (
       <div id="pothole-profile">
         <Container textAlign="center">
+          <Button type="button" onClick={() => { onClick(index); }}>Next</Button>
           <Card className="ui centered card">
             <Image src={image} wrapped ui={false} />
             <Card.Content>
@@ -121,7 +122,6 @@ export default class Pothole extends Component {
               <Progress percent={progress} progress indicating />
             </Card.Content>
           </Card>
-          <Button type="button" onClick={() => { onClick(index); }}>Next</Button>
         </Container>
       </div>
     );

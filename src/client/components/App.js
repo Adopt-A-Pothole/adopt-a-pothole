@@ -36,6 +36,8 @@ export default class App extends Component {
   getPothole() {
     return axios.get('/pothole')
       .then((response) => {
+        // this pothole will need to be mapped or changed to be <Pothole />
+        // and pass props
         this.setPothole(response.body);
       });
   }
@@ -78,7 +80,7 @@ export default class App extends Component {
 
   render() {
     // get props from pothole object to pass to Pothole component
-    const { pothole, potholes } = this.state;
+    const { pothole } = this.state;
 
     return (
       <div>

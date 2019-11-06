@@ -19,26 +19,38 @@ Once the project moves into development, the press release can be used as a touc
 ## Heading
   > Name the product in a way the reader (i.e. your target customers) will understand.
 
+  <h1> Adopt-A-Pothole </h1>
+
 ## Sub-Heading
   > Describe who the market for the product is and what benefit they get. One sentence only underneath the title.
+
+  <h2>Fixing the potholes of New Orleans, one donation at a time </h2>
 
 ## Summary
   > Give a summary of the product and the benefit. Assume the reader will not read anything else so make this paragraph good.
 
+  <p>Adopt-A-Pothole allows users to report potholes in their area, those users are then are allowed to donate to get the pothole repaired. Users will also have the ability to search potholes in their area to help fix up potholes in places of their choosing. </p>
+
 ## Problem
   > Describe the problem your product solves.
+  <p>New Orleanians are very familiar with potholes around the city. Some of these potholes have been here for years and no one seems to be in a rush to get it fixed.  </p>
 
 ## Solution
   > Describe how your product elegantly solves the problem.
+ <p>By enabling users to donate to get potholes in their area fixed, we can speed up the process of repair for many New Orleans neighborhood potholes. </p>
 
 ## Quote from You
   > A quote from a spokesperson in your company.
+  <p> Pothole? More like, not-a-hole </p>
 
 ## How to Get Started
   > Describe how easy it is to get started.
+  <p> Users may search and donate to potholes as needed. In order to create a new pothole to start accepting donations for, a user must login. 
 
 ## Customer Quote
   > Provide a quote from a hypothetical customer that describes how they experienced the benefit.
+  <p>'Wow, my neighborhood had so many potholes, now my kids can skateboard in the street!' </p>
 
 ## Closing and Call to Action
   > Wrap it up and give pointers where the reader should go next.
+  <p> Find troublesome potholes in your area today and start donating to get them repaired! </p>

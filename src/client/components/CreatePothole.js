@@ -6,7 +6,8 @@ import {
   Card,
   Form,
   TextArea,
-  Input
+  Input,
+  Loader
 } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
 import UploadPothole from './UploadPothole';
@@ -21,6 +22,7 @@ export default class CreatePothole extends Component {
       severity: 0,
       description: null,
       image: null,
+      loader: null
     };
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleDescription = this.handleDescription.bind(this);
@@ -33,6 +35,9 @@ export default class CreatePothole extends Component {
   // get User Location
   // eslint-disable-next-line class-methods-use-this
   getLocation() {
+    this.setState({
+      loader: <Loader active inline="centered" />
+    });
     navigator.geolocation.getCurrentPosition((position) => {
       const { longitude, latitude } = position.coords;
       this.setState({
@@ -98,7 +103,7 @@ export default class CreatePothole extends Component {
       handleRating,
       getLocation
     } = this;
-    const { severity } = this.state;
+    const { severity, location, loader } = this.state;
     return (
       <div>
         <Card className="ui centered card">
@@ -111,9 +116,21 @@ export default class CreatePothole extends Component {
             <Input onChange={handleTitle} placeholder="Name Your Pothole" />
           </Card.Content>
           <Card.Content>
-            <Button onClick={getLocation}>
-              Get Current Location
-            </Button>
+            {location ?
+              (
+                <div>
+                  <p>Longitude: {location.longitude}</p>
+                  <p>Latitude: {location.latitude}</p>
+                </div>
+              )
+              : (
+                <div>
+                  <Button onClick={getLocation}>
+                    Get Current Location
+                  </Button>
+                  {loader}
+                </div>
+              )}
           </Card.Content>
           <Card.Content>
             <Card.Description>

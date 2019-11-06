@@ -39,6 +39,44 @@ Pothole.belongsTo(User);
 db.sync({ force: true })
   .then(() => {
     console.log('Database & tables created!');
+  })
+  .then(() => {
+    // seed db with a few fake potholes
+    Pothole.create({
+      longitude: 12.080,
+      latitude: 12.080,
+      severity: 2,
+      title: 'BADDD',
+      description: 'This is a big hole',
+      fill_cost: 200,
+      money_donated: 50,
+      filled: false,
+      image: 'https://res.cloudinary.com/adopt-a-pothole/image/upload/v1572969785/diyl0gc4rycs9etkwzeb.jpg'
+    });
+
+    Pothole.create({
+      longitude: 29.9990,
+      latitude: 32.0000,
+      severity: 3,
+      title: 'Bikes worst enemy',
+      description: 'BIIGGG',
+      fill_cost: 600,
+      money_donated: 200,
+      filled: false,
+      image: 'https://res.cloudinary.com/adopt-a-pothole/image/upload/v1572997766/gi26vkbbv7y810y5j0r0.jpg'
+    });
+
+    Pothole.create({
+      longitude: 43.4444,
+      latitude: 21.0000,
+      severity: 1,
+      title: 'Not much happening',
+      description: 'small',
+      fill_cost: 100,
+      money_donated: 60,
+      filled: false,
+      image: 'https://res.cloudinary.com/adopt-a-pothole/image/upload/v1572992370/pko97kuqohnya41ybhgg.jpg'
+    });
   });
 
 // export models

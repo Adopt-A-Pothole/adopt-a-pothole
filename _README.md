@@ -4,9 +4,9 @@
 
 ## Team
 
-  - __Product Owner__: teamMember
-  - __Scrum Master__: teamMember
-  - __Development Team Members__: teamMember, teamMember
+  - __Product Owner__: Jade
+  - __Scrum Master__: Avery
+  - __Development Team Members__: Brandon, Titus
 
 ## Table of Contents
 

@@ -72,6 +72,7 @@ export default class Pothole extends Component {
   render() {
     const {
       image,
+      title,
       description,
       rating,
       location,
@@ -87,7 +88,7 @@ export default class Pothole extends Component {
           <Card className="ui centered card">
             <Image src={image} wrapped ui={false} />
             <Card.Content>
-              <Card.Header>Axle-breaker</Card.Header>
+              <Card.Header>{title}</Card.Header>
               <Card.Meta>
                 <span className="date">{location}</span>
               </Card.Meta>

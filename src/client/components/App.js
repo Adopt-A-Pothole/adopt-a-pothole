@@ -40,9 +40,17 @@ export default class App extends Component {
       });
   }
 
+<<<<<<< HEAD
   setPotholes() {
     let mappedPotholes;
     const { potholes } = this.state;
+=======
+  render() {
+    // get props from pothole object to pass to Pothole component
+    const { potholes } = this.state;
+    let mappedPotholes;
+
+>>>>>>> c10449b084a9c1c75ec87a0d8d08fa4b5cf1c57c
     if (potholes !== null && potholes.length) {
       mappedPotholes = potholes.map((mappedPothole, index) => (
         <div>
@@ -50,6 +58,7 @@ export default class App extends Component {
             onClick={this.renderPothole}
             index={index}
             image={mappedPothole.image}
+            title={mappedPothole.title}
             description={mappedPothole.description}
             rating={mappedPothole.severity}
             location={mappedPothole.location}
@@ -82,7 +91,11 @@ export default class App extends Component {
     return (
       <div>
         <Link id="CreatePothole" to="/create">Add A Pothole</Link>
+<<<<<<< HEAD
         {pothole}
+=======
+        {mappedPotholes}
+>>>>>>> c10449b084a9c1c75ec87a0d8d08fa4b5cf1c57c
       </div>
     );
   }

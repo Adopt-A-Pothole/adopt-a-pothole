@@ -211,7 +211,7 @@ routes.get('/pothole', (req, res) => {
   // req body to include location
   if (!req.body.location) {
     // send 3 potholes to map over
-    return Pothole.findAll()
+    return Pothole.findAll({ order: [['createdAt', 'DESC']] })
       .then(potholes => res.send(potholes))
       .catch(err => console.error(err));
   }

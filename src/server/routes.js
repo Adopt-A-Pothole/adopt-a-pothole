@@ -23,6 +23,7 @@ const { saveUser, savePothole, saveDonation } = require('./db/helpers');
 
 
 routes.post('/potholes', (req, res) => {
+  
   savePothole(req.body);
   res.sendStatus(200);
   res.end();
@@ -196,7 +197,7 @@ routes.get('/pothole', (req, res) => {
   // get pothole from db based on location
 });
 
-
+// handle reload errors
 routes.get('/create', (req, res) => {
   res.redirect('/');
 });

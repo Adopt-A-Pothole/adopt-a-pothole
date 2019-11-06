@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Button, Image, Placeholder } from 'semantic-ui-react';
+import { Button, Image } from 'semantic-ui-react';
 
 export default class UploadPothole extends Component {
   constructor(props) {

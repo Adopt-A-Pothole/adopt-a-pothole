@@ -16,6 +16,7 @@ export default class CreatePothole extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      title: null,
       location: null,
       severity: 0,
       description: null,
@@ -25,19 +26,43 @@ export default class CreatePothole extends Component {
     this.handleDescription = this.handleDescription.bind(this);
     this.handleImage = this.handleImage.bind(this);
     this.handleRating = this.handleRating.bind(this);
+    this.handleTitle = this.handleTitle.bind(this);
+    this.getLocation = this.getLocation.bind(this);
+  }
+
+  // get User Location
+  // eslint-disable-next-line class-methods-use-this
+  getLocation() {
+    navigator.geolocation.getCurrentPosition((position) => {
+      const { longitude, latitude } = position.coords;
+      this.setState({
+        // eslint-disable-next-line react/no-unused-state
+        location: {
+          latitude,
+          longitude
+        }
+      });
+      // TODO disable get current location and display location on map
+    });
   }
 
   // handle form submit
   handleSubmit() {
-    const formData = this.state;
+    const pothole = this.state;
     // send post request to /potholes
-    axios.post('/potholes', { formData })
+    axios.post('/potholes', { pothole })
       .then(() => {
+        // TODO Message success
         console.log('pothole created');
-      })
-      .catch(() => {
-        console.log('something went wrong');
       });
+  }
+
+  // handle title change
+  handleTitle(event) {
+    const title = event.target.value;
+    this.setState({
+      title,
+    });
   }
 
   // handle severity score
@@ -59,7 +84,6 @@ export default class CreatePothole extends Component {
   // handle image change
   handleImage(url) {
     const image = url;
-    debugger;
     this.setState({
       image,
     });
@@ -68,9 +92,11 @@ export default class CreatePothole extends Component {
   render() {
     const {
       handleSubmit,
+      handleTitle,
       handleDescription,
       handleImage,
       handleRating,
+      getLocation
     } = this;
     const { severity } = this.state;
     return (
@@ -82,10 +108,10 @@ export default class CreatePothole extends Component {
             </Card.Header>
           </Card.Content>
           <Card.Content>
-            <Input placeholder="Name Your Pothole" />
+            <Input onChange={handleTitle} placeholder="Name Your Pothole" />
           </Card.Content>
           <Card.Content>
-            <Button>
+            <Button onClick={getLocation}>
               Get Current Location
             </Button>
           </Card.Content>

@@ -23,11 +23,37 @@ const { saveUser, savePothole, saveDonation } = require('./db/helpers');
 
 
 routes.post('/potholes', (req, res) => {
-  // take address prop from req.body
+  // grab incoming pothole info
+  const {
+    title,
+    description,
+    image,
+    severity
+  } = req.body.pothole;
+  const {
+    latitude,
+    longitude
+  } = req.body.pothole.location;
   // change to have longitude/latitude from address
-  savePothole(req.body);
-  res.sendStatus(200);
-  res.end();
+  Pothole.create({
+    longitude,
+    latitude,
+    severity,
+    title,
+    description,
+    fill_cost: severity * 200,
+    money_donated: 0,
+    filled: false,
+    image
+  })
+    .then(() => {
+      // TODO fix this
+      res.send();
+    })
+    .catch((err) => {
+      console.error(err);
+      res.send();
+    });
 });
 
 // a get route to get a pothole
@@ -186,7 +212,7 @@ routes.get('/pothole', (req, res) => {
   if (!req.body.location) {
     // send 3 potholes to map over
     return Pothole.findAll()
-      .then(potholes => res.send(potholes.slice(0, 3)))
+      .then(potholes => res.send(potholes))
       .catch(err => console.error(err));
   }
   // parse location and convert to longitude/latitude

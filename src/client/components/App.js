@@ -71,7 +71,7 @@ export default class App extends Component {
 
   renderPothole(index) {
     const { mappedPotholes } = this.state;
-    if (index === 2) {
+    if (index === mappedPotholes.length - 1) {
       this.setState({ pothole: mappedPotholes[0] });
     } else {
       this.setState({ pothole: mappedPotholes[index + 1] });

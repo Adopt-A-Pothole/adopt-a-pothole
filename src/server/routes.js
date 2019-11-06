@@ -23,6 +23,8 @@ const { saveUser, savePothole, saveDonation } = require('./db/helpers');
 
 
 routes.post('/potholes', (req, res) => {
+  // take address prop from req.body
+  // change to have longitude/latitude from address
   savePothole(req.body);
   res.sendStatus(200);
   res.end();
@@ -30,7 +32,6 @@ routes.post('/potholes', (req, res) => {
 
 // a get route to get a pothole
 routes.get('/potholes', (req, res) => {
-  console.log('WORKED');
   return Pothole.findAll({
     // where: { severity: 10 }
   })

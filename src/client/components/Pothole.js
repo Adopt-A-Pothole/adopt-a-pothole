@@ -75,6 +75,8 @@ export default class Pothole extends Component {
       rating,
       location,
       progress,
+      index,
+      onClick
     } = this.props;
     const { donationForm, donationMessage } = this.state;
 
@@ -117,6 +119,7 @@ export default class Pothole extends Component {
               <Progress percent={progress} progress indicating />
             </Card.Content>
           </Card>
+          <button type="button" onClick={() => { onClick(index); }}>Next</button>
         </Container>
       </div>
     );

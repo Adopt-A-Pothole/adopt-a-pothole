@@ -1,7 +1,10 @@
 import React, { Component } from 'react';
 import Rating from 'react-rating';
 import axios from 'axios';
+import { Button, Card } from 'semantic-ui-react';
+import { Link } from 'react-router-dom';
 import UploadPothole from './UploadPothole';
+
 
 export default class CreatePothole extends Component {
   constructor(props) {
@@ -75,16 +78,48 @@ export default class CreatePothole extends Component {
     const { severity } = this.state;
     return (
       <div>
-        <hr />
-        <h1> Create Pothole </h1>
-        <h3>Type in Address of Pothole</h3>
-        <input type="text" onChange={handleAddress} />
-        <h3>How Bad is it?</h3>
-        <Rating
-          stop={3}
-          placeholderRating={severity}
-          onClick={handleRating}
-        />
+        <Card className="ui centered card">
+          <Card.Content>
+            <Card.Header>
+              Report a Pothole
+            </Card.Header>
+          </Card.Content>
+          <Card.Content>
+            <Button>
+              Get Current Location
+            </Button>
+          </Card.Content>
+          <Card.Content>
+            <Card.Description>
+              Please Rate Severity of Pothole
+            </Card.Description>
+            <Rating
+              stop={3}
+              placeholderRating={severity}
+              onClick={handleRating}
+            />
+            <Card.Meta>
+              1 being small, 3 being BIG
+            </Card.Meta>
+          </Card.Content>
+          <Card.Content>
+            <UploadPothole />
+          </Card.Content>
+          <Card.Content extra>
+            <div className="ui two buttons">
+              <Button basic color="green" onClick={handleSubmit}>
+                Submit
+              </Button>
+              <Button as={Link} to="/" basic color="red">
+                Cancel
+              </Button>
+            </div>
+          </Card.Content>
+        </Card>
+        <h1> Report A Pothole </h1>
+        <h3>Please rate severity of pothole</h3>
+        <h4>(1 being small, 3 being BIG)</h4>
+
         <h3>Picture url</h3>
         <input type="text" onChange={handleImage} />
         <h3>Description</h3>
@@ -96,7 +131,6 @@ export default class CreatePothole extends Component {
           >
             Report Pothole
           </button>
-          <UploadPothole />
         </div>
         <hr />
       </div>

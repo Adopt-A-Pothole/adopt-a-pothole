@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Button } from 'semantic-ui-react';
 import axios from 'axios';
 
 
@@ -9,7 +10,9 @@ export default class UploadPothole extends Component {
   }
 
 
+  // eslint-disable-next-line class-methods-use-this
   uploadWidget() {
+    // eslint-disable-next-line no-undef
     cloudinary.openUploadWidget({ cloud_name: 'adopt-a-pothole', upload_preset: 'jdsupaox', tags: ['adopt-a-pothole'] },
       (error, result) => {
         console.log(result[0].secure_url);
@@ -19,11 +22,10 @@ export default class UploadPothole extends Component {
   render() {
     return (
       <div className="uploadpothole">
-        <h5>Upload A Pothole</h5>
         <div className="upload">
-          <button type="button" onClick={this.uploadWidget} className="upload-button">
+          <Button onClick={this.uploadWidget} className="upload-button">
             Add Image
-          </button>
+          </Button>
         </div>
       </div>
     );

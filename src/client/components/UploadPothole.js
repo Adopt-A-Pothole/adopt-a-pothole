@@ -1,19 +1,15 @@
 import React, { Component } from 'react';
-import { Button, Image } from 'semantic-ui-react';
-import axios from 'axios';
-
+import { Button, Image, Placeholder } from 'semantic-ui-react';
 
 export default class UploadPothole extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       url: null,
     };
     this.uploadWidget = this.uploadWidget.bind(this);
   }
 
-
-  // eslint-disable-next-line class-methods-use-this
   uploadWidget() {
     // eslint-disable-next-line no-undef
     cloudinary.openUploadWidget({ cloud_name: 'adopt-a-pothole', upload_preset: 'jdsupaox', tags: ['adopt-a-pothole'] },
@@ -21,6 +17,8 @@ export default class UploadPothole extends Component {
         const url = result[0].secure_url;
         // render photo
         this.setState({ url });
+        // call function to pass url to parent
+        this.props.success(url);
       });
   }
 

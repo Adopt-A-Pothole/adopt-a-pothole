@@ -11,6 +11,7 @@ export default class App extends Component {
     this.state = {
       pothole: null, // this will be an object
       potholes: null,
+      mappedPotholes: null,
     };
     this.setPothole = this.setPothole.bind(this);
     this.renderPothole = this.renderPothole.bind(this);
@@ -61,20 +62,19 @@ export default class App extends Component {
           <br />
         </div>
       ));
-      this.setState({ potholes: mappedPotholes });
-      this.setState({ pothole: mappedPotholes[0] }); // set first pothole
+      this.setState({ mappedPotholes }); // adds mapped potholes to state for dynamic rendering
+      this.setState({ pothole: mappedPotholes[0] }); // set first pothole as current
     } else {
       mappedPotholes = <h3>Loading potholes...</h3>;
     }
-    return mappedPotholes;
   }
 
   renderPothole(index) {
-    const { potholes } = this.state;
+    const { mappedPotholes } = this.state;
     if (index === 2) {
-      this.setState({ pothole: potholes[0] });
+      this.setState({ pothole: mappedPotholes[0] });
     } else {
-      this.setState({ pothole: potholes[index + 1] });
+      this.setState({ pothole: mappedPotholes[index + 1] });
     }
   }
 

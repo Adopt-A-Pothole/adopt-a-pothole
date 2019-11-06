@@ -99,7 +99,7 @@ export default class Pothole extends Component {
             </Card.Content>
             <Card.Content>
               <p>How bad is it?</p>
-              <Rating defaultRating={rating} maxRating={3} disabled />
+              <Rating defaultRating={0} rating={rating} maxRating={3} disabled />
             </Card.Content>
             <Card.Content extra>
               <button

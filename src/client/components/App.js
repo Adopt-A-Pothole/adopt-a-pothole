@@ -19,7 +19,7 @@ export default class App extends Component {
   }
 
   componentDidMount() {
-    axios.get('/pothole')
+    axios.get('/potholes')
       .then((response) => {
         this.setState({
           potholes: response.data,

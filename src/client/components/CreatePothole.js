@@ -12,7 +12,6 @@ import {
 import { Link } from 'react-router-dom';
 import UploadPothole from './UploadPothole';
 
-
 export default class CreatePothole extends Component {
   constructor(props) {
     super(props);
@@ -38,17 +37,18 @@ export default class CreatePothole extends Component {
     this.setState({
       loader: <Loader active inline="centered" />
     });
-    navigator.geolocation.getCurrentPosition((position) => {
-      const { longitude, latitude } = position.coords;
-      this.setState({
-        // eslint-disable-next-line react/no-unused-state
-        location: {
-          latitude,
-          longitude
-        }
+    // ask server to request lat/long from google
+    axios.get('/location')
+      .then((res) => {
+        const { lat, lng } = res.data;
+        // update state
+        this.setState({
+          location: {
+            latitude: lat,
+            longitude: lng
+          }
+        });
       });
-      // TODO disable get current location and display location on map
-    });
   }
 
   // handle form submit

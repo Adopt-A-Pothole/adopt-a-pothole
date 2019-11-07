@@ -1,4 +1,5 @@
 const { Router } = require('express');
+const axios = require('axios');
 require('dotenv').config();
 
 const routes = Router();
@@ -226,6 +227,20 @@ routes.get('/pothole', (req, res) => {
 // handle reload errors
 routes.get('/create', (req, res) => {
   res.redirect('/');
+});
+
+// get location
+routes.get('/location', (req, res) => {
+  // request location from google geolocation api
+  axios.post(`https://www.googleapis.com/geolocation/v1/geolocate?key=${process.env.google_key}`)
+    .then((response) => {
+      const { lat, lng } = response.data.location;
+      res.send({ lat, lng });
+    })
+    .catch((err) => {
+      console.error(err);
+      res.end();
+    });
 });
 
 module.exports = { routes };

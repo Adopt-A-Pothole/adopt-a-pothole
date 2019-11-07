@@ -59,12 +59,11 @@ routes.post('/potholes', (req, res) => {
 
 // a get route to get a pothole
 routes.get('/potholes', (req, res) => {
-  return Pothole.findAll({
-    // where: { severity: 10 }
-  })
-    .then((pothole) => {
-      console.log(pothole);
-      res.send(pothole);
+  return Pothole.findAll(
+    { order: [['createdAt', 'DESC']] }
+  )
+    .then((potholes) => {
+      res.send(potholes);
       res.end();
     })
     .catch((err) => {
@@ -210,12 +209,13 @@ routes.get('/cancel', (req, res) => {
 
 routes.get('/pothole', (req, res) => {
   // req body to include location
-  if (!req.body.location) {
-    // send 3 potholes to map over
-    return Pothole.findAll({ order: [['createdAt', 'DESC']] })
-      .then(potholes => res.send(potholes))
-      .catch(err => console.error(err));
-  }
+  // if (!req.body.location) {
+  //   // send 3 potholes to map over
+  //   // THIS SHOULDNT BE NEEDED ANYMORE //
+  //   return Pothole.findAll({ order: [['createdAt', 'DESC']] })
+  //     .then(potholes => res.send(potholes))
+  //     .catch(err => console.error(err));
+  // }
   // parse location and convert to longitude/latitude
   let longitude;
   let latitude;
@@ -226,6 +226,10 @@ routes.get('/pothole', (req, res) => {
 
 // handle reload errors
 routes.get('/create', (req, res) => {
+  res.redirect('/');
+});
+
+routes.get('/map', (req, res) => {
   res.redirect('/');
 });
 

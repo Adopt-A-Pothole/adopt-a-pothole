@@ -148,7 +148,7 @@ routes.post('/users', (req, res) => {
 // post route to make a paypal payment
 routes.post('/donate', (req, res) => {
   // get payment amount
-  const { donation } = req.body;
+  const { donation, id } = req.body;
   // make sure donation is valid
   if (isNaN(+donation) || +donation < 0) {
     console.log('not a valid amount');
@@ -169,7 +169,7 @@ routes.post('/donate', (req, res) => {
       item_list: {
         items: [{
           name: 'big hole',
-          sku: '1',
+          sku: `${id}`,
           currency: 'USD',
           price: donation,
           quantity: 1

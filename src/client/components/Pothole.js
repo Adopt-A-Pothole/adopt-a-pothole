@@ -49,7 +49,7 @@ export default class Pothole extends Component {
   handleDonation() {
     const { donation } = this.state;
     // grab pothole id and input value
-    axios.post('/donate', { donation, location: 'POTHOLE ID HERE' })
+    axios.post('/donate', { donation, id: this.props.id })
       .then((response) => {
         if (response.data === 'invalid') {
           console.log('payment unsuccessful');

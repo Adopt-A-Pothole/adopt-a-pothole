@@ -22,7 +22,7 @@ paypal.configure({
 
 // require models
 const { User, Pothole } = require('./db/index');
-const { saveUser, savePothole, saveDonation } = require('./db/helpers');
+const { saveUser, updateDonation, saveDonation } = require('./db/helpers');
 
 // auth routes
 routes.get('/', (req, res) => {
@@ -225,6 +225,7 @@ routes.get('/success', (req, res) => {
       const toSave = { amount: +total, email, pothole_id: sku };
       saveDonation(toSave)
         .then(() => {
+          updateDonation(toSave);
           // TODO send back success message
           res.redirect('/');
         })

@@ -10,17 +10,25 @@ const saveUser = req => User.create({
 
 
 // save pothole to the database
-const savePothole = req => Pothole.create({
-  longitude: req.longitude,
-  latitude: req.latitude,
-  severity: req.severity,
-  description: req.description,
-  fill_cost: req.fill_cost,
-  money_donated: req.money_donated,
-  filled: req.filled,
-  image: req.image,
-});
-
+const updateDonation = (req) => {
+  Pothole.findAll({
+    where: {
+      id: req.pothole_id
+    }
+  })
+    .then((pothole) => {
+      console.log(pothole[0]);
+      let money = Number(pothole[0].money_donated);
+      Pothole.update({
+        money_donated: money += req.amount,
+      }, {
+        where: { id: req.pothole_id }
+      });
+    })
+    .catch((err) => {
+      console.error(err, 'errr');
+    });
+};
 const saveDonation = req => Donation.create({
   amount: req.amount,
   email: req.email,
@@ -28,5 +36,5 @@ const saveDonation = req => Donation.create({
 });
 
 module.exports.saveDonation = saveDonation;
-module.exports.savePothole = savePothole;
+module.exports.updateDonation = updateDonation;
 module.exports.saveUser = saveUser;

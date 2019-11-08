@@ -27,6 +27,14 @@ const routing = (
         <Menu.Item as={Link} to="/map">
           Map
         </Menu.Item>
+        <Menu.Menu position="right">
+          <Menu.Item href="http://localhost:8080/auth/google">
+            Login
+          </Menu.Item>
+          <Menu.Item href="http://localhost:8080/logout">
+            Logout
+          </Menu.Item>
+        </Menu.Menu>
       </Menu>
       <Route exact path="/" component={App} />
       <Route path="/create" component={CreatePothole} />

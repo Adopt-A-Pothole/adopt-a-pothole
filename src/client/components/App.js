@@ -53,6 +53,7 @@ export default class App extends Component {
           <Pothole
             onClick={this.renderPothole}
             index={index}
+            id={mappedPothole.id}
             image={mappedPothole.image}
             title={mappedPothole.title}
             description={mappedPothole.description}

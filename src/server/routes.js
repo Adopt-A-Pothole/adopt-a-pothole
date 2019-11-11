@@ -1,6 +1,5 @@
 const { Router } = require('express');
 const axios = require('axios');
-const passport = require('passport');
 
 require('dotenv').config();
 
@@ -23,47 +22,6 @@ paypal.configure({
 // require models
 const { User, Pothole } = require('./db/index');
 const { saveUser, updateDonation, saveDonation } = require('./db/helpers');
-
-// auth routes
-routes.get('/', (req, res) => {
-  if (req.session.token) {
-    res.cookie('token', req.session.token);
-    res.json({
-      status: 'session cookie set'
-    });
-  } else {
-    res.cookie('token', '');
-    res.json({
-      status: 'session cookie not set'
-    });
-  }
-});
-
-routes.get('/auth/google', passport.authenticate('google', {
-  scope: ['https://www.googleapis.com/auth/userinfo.profile']
-}));
-
-routes.get('/authorized', (req, res) => {
-  // check if session token exists
-  if(req.session.populated){
-    res.send(true);
-  } else {
-    res.send(false);
-  }
-});
-
-routes.get('/auth/google/callback',
-  passport.authenticate('google', { failureRedirect: '/' }),
-  (req, res) => {
-    req.session.token = req.user.token;
-    res.redirect('/');
-  });
-
-routes.get('/logout', (req, res) => {
-  req.logout();
-  req.session = null;
-  res.redirect('/');
-});
 
 routes.post('/potholes', (req, res) => {
   // grab incoming pothole info
@@ -101,16 +59,16 @@ routes.post('/potholes', (req, res) => {
 
 // a get route to get a pothole
 routes.get('/potholes', (req, res) => Pothole.findAll(
-    { order: [['createdAt', 'DESC']] }
-  )
-    .then((potholes) => {
-      res.send(potholes);
-      res.end();
-    })
-    .catch((err) => {
-      console.error(err);
-      res.send(500);
-    }));
+  { order: [['createdAt', 'DESC']] }
+)
+  .then((potholes) => {
+    res.send(potholes);
+    res.end();
+  })
+  .catch((err) => {
+    console.error(err);
+    res.send(500);
+  }));
 
 // get route to get a user
 routes.get('/users', (req, res) => {
@@ -248,14 +206,6 @@ routes.get('/cancel', (req, res) => {
 
 
 routes.get('/pothole', (req, res) => {
-  // req body to include location
-  // if (!req.body.location) {
-  //   // send 3 potholes to map over
-  //   // THIS SHOULDNT BE NEEDED ANYMORE //
-  //   return Pothole.findAll({ order: [['createdAt', 'DESC']] })
-  //     .then(potholes => res.send(potholes))
-  //     .catch(err => console.error(err));
-  // }
   // parse location and convert to longitude/latitude
   let longitude;
   let latitude;

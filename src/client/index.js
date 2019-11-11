@@ -1,15 +1,32 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Route, Link, BrowserRouter as Router, } from 'react-router-dom';
+import { Auth0Provider } from './react-auth0-spa';
+import App from './app';
+import config from './auth_config.json';
 // semantic ui import
 import 'semantic-ui-css/semantic.min.css';
 import { Menu, Header } from 'semantic-ui-react';
 
 
-import App from './components/App';
+import Appp from './components/App';
 import CreatePothole from './components/CreatePothole';
 import Pothole from './components/Pothole';
 import MapContainer from './components/Map';
+import NavBar from './components/NavBar';
+
+// A function that routes the user to the right place
+// after login
+const onRedirectCallback = (appState) => {
+  window.history.replaceState(
+    {},
+    document.title,
+    appState && appState.targetUrl
+      ? appState.targetUrl
+      : window.location.pathname
+  );
+};
+
 
 const routing = (
   <Router>
@@ -28,15 +45,17 @@ const routing = (
           Map
         </Menu.Item>
         <Menu.Menu position="right">
-          <Menu.Item href="http://localhost:8080/auth/google">
-            Login
-          </Menu.Item>
-          <Menu.Item href="http://localhost:8080/logout">
-            Logout
-          </Menu.Item>
+          <Auth0Provider
+            domain={config.domain}
+            client_id={config.clientId}
+            redirect_uri={window.location.origin}
+            onRedirectCallback={onRedirectCallback}
+          >
+            <App />
+          </Auth0Provider>
         </Menu.Menu>
       </Menu>
-      <Route exact path="/" component={App} />
+      <Route exact path="/" component={Appp} />
       <Route path="/create" component={CreatePothole} />
       <Route path="/pothole" component={Pothole} />
       <Route path="/map" component={MapContainer} />

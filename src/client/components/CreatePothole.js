@@ -31,17 +31,6 @@ export default class CreatePothole extends Component {
     this.getLocation = this.getLocation.bind(this);
   }
 
-  // check if user authorized
-  componentDidMount() {
-    axios.get('/authorized')
-      .then((res) => {
-        // redirect to login if false
-        if (!res.data) {
-          window.location.href = 'http://localhost:8080/auth/google';
-        }
-      });
-  }
-
   // get User Location
   // eslint-disable-next-line class-methods-use-this
   getLocation() {

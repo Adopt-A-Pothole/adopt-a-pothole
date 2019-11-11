@@ -45,7 +45,7 @@ routes.get('/auth/google', passport.authenticate('google', {
 
 routes.get('/authorized', (req, res) => {
   // check if session token exists
-  if(req.session.populated){
+  if (req.session.populated) {
     res.send(true);
   } else {
     res.send(false);
@@ -101,16 +101,16 @@ routes.post('/potholes', (req, res) => {
 
 // a get route to get a pothole
 routes.get('/potholes', (req, res) => Pothole.findAll(
-    { order: [['createdAt', 'DESC']] }
-  )
-    .then((potholes) => {
-      res.send(potholes);
-      res.end();
-    })
-    .catch((err) => {
-      console.error(err);
-      res.send(500);
-    }));
+  { order: [['createdAt', 'DESC']] }
+)
+  .then((potholes) => {
+    res.send(potholes);
+    res.end();
+  })
+  .catch((err) => {
+    console.error(err);
+    res.send(500);
+  }));
 
 // get route to get a user
 routes.get('/users', (req, res) => {
@@ -214,7 +214,6 @@ routes.get('/success', (req, res) => {
       throw error;
     } else {
       console.log(JSON.stringify(payment));
-      // TODO need to save transaction to db;
       payment;
 
       const { email } = payment.payer.payer_info;
@@ -234,29 +233,17 @@ routes.get('/success', (req, res) => {
           console.error(err);
           res.redirect('/');
         });
-      // amount -- email -- pothole_id
-      // TODO prompt a toast saying successful payment
     }
   });
 });
 
 // send toast that transaction was canceled
 routes.get('/cancel', (req, res) => {
-  // TODO - handle toast message
   res.redirect('/');
 });
 
 
 routes.get('/pothole', (req, res) => {
-  // req body to include location
-  // if (!req.body.location) {
-  //   // send 3 potholes to map over
-  //   // THIS SHOULDNT BE NEEDED ANYMORE //
-  //   return Pothole.findAll({ order: [['createdAt', 'DESC']] })
-  //     .then(potholes => res.send(potholes))
-  //     .catch(err => console.error(err));
-  // }
-  // parse location and convert to longitude/latitude
   let longitude;
   let latitude;
   return Pothole.findOne({ where: { longitude, latitude } })

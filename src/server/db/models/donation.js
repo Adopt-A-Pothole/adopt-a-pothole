@@ -5,6 +5,6 @@ module.exports = (sequelize, type) => sequelize.define('donation', {
     autoIncrement: true
   },
   amount: type.DECIMAL(10, 2),
-  email: type.STRING, // May need to reference user email as foreign key
+  email: type.STRING,
   pothole_id: type.INTEGER
 });

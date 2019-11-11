@@ -4,7 +4,6 @@ import axios from 'axios';
 import '../app.css';
 import Pothole from './Pothole';
 
-// import CreatePothole from './CreatePothole';
 
 export default class App extends Component {
   constructor(props) {

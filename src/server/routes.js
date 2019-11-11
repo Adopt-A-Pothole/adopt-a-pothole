@@ -172,7 +172,6 @@ routes.get('/success', (req, res) => {
       throw error;
     } else {
       console.log(JSON.stringify(payment));
-      // TODO need to save transaction to db;
       payment;
 
       const { email } = payment.payer.payer_info;
@@ -192,21 +191,17 @@ routes.get('/success', (req, res) => {
           console.error(err);
           res.redirect('/');
         });
-      // amount -- email -- pothole_id
-      // TODO prompt a toast saying successful payment
     }
   });
 });
 
 // send toast that transaction was canceled
 routes.get('/cancel', (req, res) => {
-  // TODO - handle toast message
   res.redirect('/');
 });
 
 
 routes.get('/pothole', (req, res) => {
-  // parse location and convert to longitude/latitude
   let longitude;
   let latitude;
   return Pothole.findOne({ where: { longitude, latitude } })

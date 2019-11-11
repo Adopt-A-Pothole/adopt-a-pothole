@@ -86,7 +86,6 @@ export default class Appp extends Component {
 
     return (
       <div>
-        <Link id="CreatePothole" to="/create">Add A Pothole</Link>
         {pothole}
       </div>
     );

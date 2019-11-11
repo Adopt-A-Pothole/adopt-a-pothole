@@ -5,7 +5,7 @@ import '../app.css';
 import Pothole from './Pothole';
 
 
-export default class App extends Component {
+export default class Appp extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -85,7 +85,6 @@ export default class App extends Component {
 
     return (
       <div>
-        <Link id="CreatePothole" to="/create">Add A Pothole</Link>
         {pothole}
       </div>
     );

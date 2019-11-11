@@ -43,8 +43,8 @@ db.sync({ force: true })
   .then(() => {
     // seed db with a few fake potholes
     Pothole.create({
-      longitude: 12.080,
-      latitude: 12.080,
+      longitude: -90.078858,
+      latitude: 29.983008,
       severity: 2,
       title: 'BADDD',
       description: 'This is a big hole',
@@ -55,20 +55,20 @@ db.sync({ force: true })
     });
 
     Pothole.create({
-      longitude: 29.9990,
-      latitude: 32.0000,
+      longitude: -90.099642,
+      latitude: 29.970321,
       severity: 3,
       title: 'Bikes worst enemy',
       description: 'BIIGGG',
       fill_cost: 600,
       money_donated: 200,
       filled: false,
-      image: 'https://res.cloudinary.com/adopt-a-pothole/image/upload/v1572997766/gi26vkbbv7y810y5j0r0.jpg'
+      image: 'https://res.cloudinary.com/adopt-a-pothole/image/upload/v1573148526/jhn3rpqdx3dgva0fbuum.jpg'
     });
 
     Pothole.create({
-      longitude: 43.4444,
-      latitude: 21.0000,
+      longitude: -90.080922,
+      latitude: 29.959415,
       severity: 1,
       title: 'Not much happening',
       description: 'small',

@@ -1,6 +1,5 @@
 const { Router } = require('express');
 const axios = require('axios');
-const passport = require('passport');
 
 require('dotenv').config();
 
@@ -23,47 +22,6 @@ paypal.configure({
 // require models
 const { User, Pothole } = require('./db/index');
 const { saveUser, updateDonation, saveDonation } = require('./db/helpers');
-
-// auth routes
-routes.get('/', (req, res) => {
-  if (req.session.token) {
-    res.cookie('token', req.session.token);
-    res.json({
-      status: 'session cookie set'
-    });
-  } else {
-    res.cookie('token', '');
-    res.json({
-      status: 'session cookie not set'
-    });
-  }
-});
-
-routes.get('/auth/google', passport.authenticate('google', {
-  scope: ['https://www.googleapis.com/auth/userinfo.profile']
-}));
-
-routes.get('/authorized', (req, res) => {
-  // check if session token exists
-  if (req.session.populated) {
-    res.send(true);
-  } else {
-    res.send(false);
-  }
-});
-
-routes.get('/auth/google/callback',
-  passport.authenticate('google', { failureRedirect: '/' }),
-  (req, res) => {
-    req.session.token = req.user.token;
-    res.redirect('/');
-  });
-
-routes.get('/logout', (req, res) => {
-  req.logout();
-  req.session = null;
-  res.redirect('/');
-});
 
 routes.post('/potholes', (req, res) => {
   // grab incoming pothole info

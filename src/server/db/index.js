@@ -63,7 +63,7 @@ db.sync({ force: true })
       fill_cost: 600,
       money_donated: 200,
       filled: false,
-      image: 'https://res.cloudinary.com/adopt-a-pothole/image/upload/v1572997766/gi26vkbbv7y810y5j0r0.jpg'
+      image: 'https://res.cloudinary.com/adopt-a-pothole/image/upload/v1573148526/jhn3rpqdx3dgva0fbuum.jpg'
     });
 
     Pothole.create({

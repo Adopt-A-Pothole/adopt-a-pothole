@@ -43,8 +43,8 @@ db.sync({ force: true })
   .then(() => {
     // seed db with a few fake potholes
     Pothole.create({
-      longitude: 12.080,
-      latitude: 12.080,
+      longitude: -90.078858,
+      latitude: 29.983008,
       severity: 2,
       title: 'BADDD',
       description: 'This is a big hole',
@@ -55,8 +55,8 @@ db.sync({ force: true })
     });
 
     Pothole.create({
-      longitude: 29.9990,
-      latitude: 32.0000,
+      longitude: -90.099642,
+      latitude: 29.970321,
       severity: 3,
       title: 'Bikes worst enemy',
       description: 'BIIGGG',
@@ -67,8 +67,8 @@ db.sync({ force: true })
     });
 
     Pothole.create({
-      longitude: 43.4444,
-      latitude: 21.0000,
+      longitude: -90.080922,
+      latitude: 29.959415,
       severity: 1,
       title: 'Not much happening',
       description: 'small',

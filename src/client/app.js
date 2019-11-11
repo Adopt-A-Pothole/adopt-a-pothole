@@ -14,11 +14,7 @@ function App() {
   }
 
   return (
-    <div className="App">
-      <header>
-        <NavBar />
-      </header>
-    </div>
+    <NavBar />
   );
 }
 

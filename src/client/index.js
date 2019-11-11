@@ -38,12 +38,6 @@ const routing = (
         <Menu.Item as={Link} to="/">
           Home
         </Menu.Item>
-        <Menu.Item as={Link} to="/create">
-          Add Pothole
-        </Menu.Item>
-        <Menu.Item as={Link} to="/map">
-          Map
-        </Menu.Item>
         <Menu.Menu position="right">
           <Auth0Provider
             domain={config.domain}

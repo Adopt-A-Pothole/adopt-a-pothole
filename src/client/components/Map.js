@@ -2,8 +2,6 @@ import React, { Component } from 'react';
 import { Map, GoogleApiWrapper, Marker } from 'google-maps-react';
 import axios from 'axios';
 
-// require('dotenv').config();
-
 export class MapContainer extends Component {
   constructor(props) {
     super(props);

@@ -79,6 +79,21 @@ db.sync({ force: true })
       filled: false,
       image: 'https://res.cloudinary.com/adopt-a-pothole/image/upload/v1572992370/pko97kuqohnya41ybhgg.jpg'
     });
+    Comment.create({
+      pothole_id: 23,
+      user_id: 6,
+      message: "Wow this the biggest hole I've seen",
+    });
+    Comment.create({
+      pothole_id: 24,
+      user_id: 7,
+      message: 'HOLY MOLY NOW THATS WHAT I CALL A HOLE',
+    });
+    Comment.create({
+      pothole_id: 24,
+      user_id: 8,
+      message: 'WHO MADE THIS POTHOLE SHIA LABEOUF',
+    });
   });
 
 // export models

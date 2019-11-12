@@ -4,6 +4,7 @@ const Sequelize = require('sequelize');
 const UserModel = require('./models/user');
 const PotholeModel = require('./models/pothole');
 const DonationModel = require('./models/donation');
+const CommentModel = require('./models/comment');
 
 // extract environment variables
 const {
@@ -28,6 +29,7 @@ const db = new Sequelize(database, user, pwd, options);
 const User = UserModel(db, Sequelize);
 const Pothole = PotholeModel(db, Sequelize);
 const Donation = DonationModel(db, Sequelize);
+const Comment = CommentModel(db, Sequelize);
 
 // define relationship between tables
 // this should create foreign key of userId for each pothole
@@ -84,4 +86,5 @@ module.exports = {
   User,
   Pothole,
   Donation,
+  Comment,
 };

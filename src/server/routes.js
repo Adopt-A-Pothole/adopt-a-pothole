@@ -20,7 +20,7 @@ paypal.configure({
 });
 
 // require models
-const { User, Pothole } = require('./db/index');
+const { User, Pothole, Comment } = require('./db/index');
 const { saveUser, updateDonation, saveDonation } = require('./db/helpers');
 
 routes.post('/potholes', (req, res) => {
@@ -75,7 +75,7 @@ routes.get('/users', (req, res) => {
   // save user to db
   // hardcoded user for testing
   User.findAll({
-    full_name: 'Avery',
+    full_name: 'Avery', // !<-- WE NEED TO CHANGE THIS POSSIBLY
   })
     .then((user) => {
       res.send(user);
@@ -229,6 +229,25 @@ routes.get('/location', (req, res) => {
     .catch((err) => {
       console.error(err);
       res.end();
+    });
+});
+
+// TODO: post the comments from db
+routes.post('/comments', (req, res) => {
+  // creates the instance & saves the fields inside the req.body
+  Comment.create({
+    pothole_id: req.body.pothole_id,
+    user_id: req.body.user_id,
+    message: req.body.message,
+  })
+    .then(() => {
+      // send the body to the client
+      res.send(req.body);
+    })
+    // if there is an error it'll be console log and a 500 status code will be sent
+    .catch((err) => {
+      res.sendStatus(500);
+      console.log(`ERROR: ${err}`);
     });
 });
 

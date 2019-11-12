@@ -4,6 +4,7 @@
   "description": "Fixing the streets of New Orleans one pothole at a time",
   "main": "src/server/index.js",
   "scripts": {
+    "build:client-dev": "webpack --config webpack.config.js --mode development --watch",
     "build": "webpack --mode production",
     "start": "npm run build && node src/server/index.js",
     "client": "webpack-dev-server --mode development --devtool inline-source-map --hot",

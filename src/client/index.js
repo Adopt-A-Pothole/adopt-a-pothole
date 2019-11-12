@@ -13,6 +13,7 @@ import Appp from './components/App';
 import CreatePothole from './components/CreatePothole';
 import Pothole from './components/Pothole';
 import MapContainer from './components/Map';
+import List from './components/List';
 import NavBar from './components/NavBar';
 
 // A function that routes the user to the right place
@@ -44,6 +45,9 @@ const routing = (
         <Menu.Item as={Link} to="/create">
           Report Pothole
         </Menu.Item>
+        <Menu.Item as={Link} to="/list">
+          All Potholes
+        </Menu.Item>
         <Menu.Menu position="right">
           <Auth0Provider
             domain={config.domain}
@@ -59,6 +63,7 @@ const routing = (
       <Route path="/create" component={CreatePothole} />
       <Route path="/pothole" component={Pothole} />
       <Route path="/map" component={MapContainer} />
+      <Route path="/list" component={List} />
     </div>
   </Router>
 );

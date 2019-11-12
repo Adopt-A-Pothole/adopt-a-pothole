@@ -38,8 +38,9 @@ export class MapContainer extends Component {
 
   render() {
     const style = {
-      width: '500px',
-      height: '400px',
+      width: 'flex',
+      height: 'flex',
+      align: 'center',
     };
     const { google } = this.props;
 

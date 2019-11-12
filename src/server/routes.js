@@ -21,7 +21,9 @@ paypal.configure({
 
 // require models
 const { User, Pothole, Comment } = require('./db/index');
-const { saveUser, updateDonation, saveDonation } = require('./db/helpers');
+const {
+ saveUser, updateDonation, saveDonation, getAllComments 
+} = require('./db/helpers');
 
 routes.post('/potholes', (req, res) => {
   // grab incoming pothole info
@@ -232,7 +234,7 @@ routes.get('/location', (req, res) => {
     });
 });
 
-// TODO: post the comments from db
+// post the comments in the db
 routes.post('/comments', (req, res) => {
   // creates the instance & saves the fields inside the req.body
   Comment.create({
@@ -251,4 +253,19 @@ routes.post('/comments', (req, res) => {
     });
 });
 
+//  get all the comments from the db and sends to frontEnd
+routes.post('/comments/:pothole_id', (req, res) => {
+  // deconstructing pothole_id to
+  const { pothole_id } = req.params;
+  // pass in the pothole_id the helper function
+  getAllComments(pothole_id)
+    .then((comments) => {
+      // send the list of comments from a specific pothole_id
+      res.send(comments);
+    })
+    .catch((err) => {
+      res.status(400);
+      console.log(err);
+    });
+});
 module.exports = { routes };

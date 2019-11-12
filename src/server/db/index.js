@@ -43,6 +43,22 @@ db.sync({ force: true })
     console.log('Database & tables created!');
   })
   .then(() => {
+    // user seed to test out
+    User.create({
+      full_name: 'Abel Terefe',
+      email: 'abelterefe98@hotmail.com',
+      amount: 320
+    });
+    User.create({
+      full_name: 'Amber Jones',
+      email: 'amberJones@gmail.com',
+      amount: 300
+    });
+    User.create({
+      full_name: 'Eliott Frilet',
+      email: 'eliottFrilet@yahoo.com',
+      amount: 320
+    });
     // seed db with a few fake potholes
     Pothole.create({
       longitude: -90.078858,
@@ -80,18 +96,23 @@ db.sync({ force: true })
       image: 'https://res.cloudinary.com/adopt-a-pothole/image/upload/v1572992370/pko97kuqohnya41ybhgg.jpg'
     });
     Comment.create({
-      pothole_id: 23,
-      user_id: 6,
-      message: "Wow this the biggest hole I've seen",
+      pothole_id: 1,
+      user_id: 1,
+      message: "Wow this the biggest hole I've seen"
     });
     Comment.create({
-      pothole_id: 24,
-      user_id: 7,
+      pothole_id: 2,
+      user_id: 2,
       message: 'HOLY MOLY NOW THATS WHAT I CALL A HOLE',
     });
     Comment.create({
-      pothole_id: 24,
-      user_id: 8,
+      pothole_id: 2,
+      user_id: 2,
+      message: 'YO, who made this HOLE???',
+    });
+    Comment.create({
+      pothole_id: 3,
+      user_id: 3,
       message: 'WHO MADE THIS POTHOLE SHIA LABEOUF',
     });
   });

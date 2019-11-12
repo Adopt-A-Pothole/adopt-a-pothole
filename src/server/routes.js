@@ -241,12 +241,12 @@ routes.post('/comments', (req, res) => {
     message: req.body.message,
   })
     .then(() => {
-      // send the body to the client
-      res.send(req.body);
+      // send the status code to client
+      res.status(201);
     })
     // if there is an error it'll be console log and a 500 status code will be sent
     .catch((err) => {
-      res.sendStatus(500);
+      res.status(500);
       console.log(`ERROR: ${err}`);
     });
 });

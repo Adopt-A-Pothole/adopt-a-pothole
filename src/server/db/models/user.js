@@ -7,6 +7,6 @@ module.exports = (sequelize, type) => {
     },
     full_name: type.STRING,
     email: type.STRING,
-    amount: type.INTEGER
+    amount: type.INTEGER // ? amount dontated, amount in paypal account ???????
   });
 };

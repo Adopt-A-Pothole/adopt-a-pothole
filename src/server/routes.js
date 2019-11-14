@@ -20,8 +20,10 @@ paypal.configure({
 });
 
 // require models
-const { User, Pothole } = require('./db/index');
-const { saveUser, updateDonation, saveDonation } = require('./db/helpers');
+const { User, Pothole, Comment } = require('./db/index');
+const {
+ saveUser, updateDonation, saveDonation, getAllComments 
+} = require('./db/helpers');
 
 routes.post('/potholes', (req, res) => {
   // grab incoming pothole info
@@ -75,7 +77,7 @@ routes.get('/users', (req, res) => {
   // save user to db
   // hardcoded user for testing
   User.findAll({
-    full_name: 'Avery',
+    full_name: 'Avery', // !<-- WE NEED TO CHANGE THIS POSSIBLY
   })
     .then((user) => {
       res.send(user);
@@ -232,4 +234,38 @@ routes.get('/location', (req, res) => {
     });
 });
 
+// post the comments in the db
+routes.post('/comments', (req, res) => {
+  // creates the instance & saves the fields inside the req.body
+  Comment.create({
+    pothole_id: req.body.pothole_id,
+    user_id: req.body.user_id,
+    message: req.body.message,
+  })
+    .then(() => {
+      // send the status code to client
+      res.status(201);
+    })
+    // if there is an error it'll be console log and a 500 status code will be sent
+    .catch((err) => {
+      res.status(500);
+      console.log(`ERROR: ${err}`);
+    });
+});
+
+//  get all the comments from the db and sends to frontEnd
+routes.post('/comments/:pothole_id', (req, res) => {
+  // deconstructing pothole_id to
+  const { pothole_id } = req.params;
+  // pass in the pothole_id the helper function
+  getAllComments(pothole_id)
+    .then((comments) => {
+      // send the list of comments from a specific pothole_id
+      res.send(comments);
+    })
+    .catch((err) => {
+      res.status(400);
+      console.log(err);
+    });
+});
 module.exports = { routes };

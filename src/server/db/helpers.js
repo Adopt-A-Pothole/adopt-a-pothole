@@ -1,4 +1,6 @@
-const { User, Pothole, Donation } = require('./index');
+const {
+ User, Pothole, Donation, Comment
+} = require('./index');
 
 // save user to the database
 const saveUser = req => User.create({
@@ -7,7 +9,6 @@ const saveUser = req => User.create({
   email: req.email,
   amount: req.amount,
 });
-
 
 // save pothole to the database
 const updateDonation = (req) => {
@@ -35,6 +36,12 @@ const saveDonation = req => Donation.create({
   pothole_id: req.pothole_id
 });
 
+// gets the speific comments based on the potholeId
+const getAllComments = potholeId => Comment.findAll({
+  where: { pothole_id: potholeId },
+});
+
 module.exports.saveDonation = saveDonation;
 module.exports.updateDonation = updateDonation;
 module.exports.saveUser = saveUser;
+module.exports.getAllComments = getAllComments;

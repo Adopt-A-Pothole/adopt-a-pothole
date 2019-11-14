@@ -47,6 +47,7 @@ db.sync({ force: true })
     Pothole.create({
       longitude: -90.078858,
       latitude: 29.983008,
+      zip: 70118,
       severity: 2,
       title: 'BADDD',
       description: 'This is a big hole',
@@ -59,6 +60,7 @@ db.sync({ force: true })
     Pothole.create({
       longitude: -90.099642,
       latitude: 29.970321,
+      zip: 70118,
       severity: 3,
       title: 'Bikes worst enemy',
       description: 'BIIGGG',
@@ -71,6 +73,7 @@ db.sync({ force: true })
     Pothole.create({
       longitude: -90.080922,
       latitude: 29.959415,
+      zip: 70112,
       severity: 1,
       title: 'Not much happening',
       description: 'small',

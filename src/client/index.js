@@ -13,7 +13,7 @@ import Appp from './components/App';
 import CreatePothole from './components/CreatePothole';
 import Pothole from './components/Pothole';
 import MapContainer from './components/Map';
-import List from './components/List';
+import PotholeList from './components/PotholeList';
 import NavBar from './components/NavBar';
 
 // A function that routes the user to the right place
@@ -63,7 +63,7 @@ const routing = (
       <Route path="/create" component={CreatePothole} />
       <Route path="/pothole" component={Pothole} />
       <Route path="/map" component={MapContainer} />
-      <Route path="/list" component={List} />
+      <Route path="/list" component={PotholeList} />
     </div>
   </Router>
 );

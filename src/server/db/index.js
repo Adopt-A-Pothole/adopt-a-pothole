@@ -118,6 +118,24 @@ db.sync({ force: true })
       user_id: 3,
       message: 'WHO MADE THIS POTHOLE SHIA LABEOUF',
     });
+
+    Donation.create({
+      amount: 10.00,
+      email: 'amberJones@gmail.com',
+      pothole_id: 2,
+    });
+
+    Donation.create({
+      amount: 120.00,
+      email: 'amberJones@gmail.com',
+      pothole_id: 2,
+    });
+
+    Donation.create({
+      amount: 1.00,
+      email: 'amberJones@gmail.com',
+      pothole_id: 2,
+    });
   });
 
 // export models

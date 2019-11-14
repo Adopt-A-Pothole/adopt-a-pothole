@@ -41,6 +41,12 @@ const getAllComments = potholeId => Comment.findAll({
   where: { pothole_id: potholeId },
 });
 
+// get all the donators of a pothole
+const getDonators = potholdId => Donation.findAll({
+  where: { pothole_id: potholdId }
+});
+
+module.exports.getDonators = getDonators;
 module.exports.saveDonation = saveDonation;
 module.exports.updateDonation = updateDonation;
 module.exports.saveUser = saveUser;

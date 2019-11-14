@@ -61,7 +61,7 @@ module.exports = () => {
         template: './public/index.html',
         favicon: './public/favicon.ico'
       }),
-      new webpack.DefinePlugin(envKeys)
+      new webpack.DefinePlugin(envKeys || {})
     ]
   };
 }

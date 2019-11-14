@@ -3,4 +3,8 @@ node_modules
 dist
 *.log
 yarn.lock
+<<<<<<< HEAD
 .env
+=======
+.env
+>>>>>>> 02c4dacd8e31281a1bbff3f60ab87f8fc666ce30

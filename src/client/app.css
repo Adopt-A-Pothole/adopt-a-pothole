@@ -1,6 +1,6 @@
 
 body {
-  text-align: center;
+  /* text-align: center; */
   margin: auto;
 }
 
@@ -20,4 +20,8 @@ body {
 
 #CreatePothole:hover {
   background: #ac1919;
+}
+
+.ui.grid {
+  margin-left: 5px;
 }

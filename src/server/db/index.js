@@ -63,27 +63,29 @@ db.sync({ force: true })
     Pothole.create({
       longitude: -90.078858,
       latitude: 29.983008,
-      zip: 70118,
+      zip: 70119,
       severity: 2,
       title: 'BADDD',
       description: 'This is a big hole',
       fill_cost: 200,
       money_donated: 50,
       filled: false,
-      image: 'https://res.cloudinary.com/adopt-a-pothole/image/upload/v1572969785/diyl0gc4rycs9etkwzeb.jpg'
+      image: 'https://res.cloudinary.com/adopt-a-pothole/image/upload/v1572969785/diyl0gc4rycs9etkwzeb.jpg',
+      median_income: 41304,
     });
 
     Pothole.create({
       longitude: -90.099642,
       latitude: 29.970321,
-      zip: 70118,
+      zip: 70119,
       severity: 3,
       title: 'Bikes worst enemy',
       description: 'BIIGGG',
       fill_cost: 600,
       money_donated: 200,
       filled: false,
-      image: 'https://res.cloudinary.com/adopt-a-pothole/image/upload/v1573148526/jhn3rpqdx3dgva0fbuum.jpg'
+      image: 'https://res.cloudinary.com/adopt-a-pothole/image/upload/v1573148526/jhn3rpqdx3dgva0fbuum.jpg',
+      median_income: 33056,
     });
 
     Pothole.create({
@@ -96,7 +98,8 @@ db.sync({ force: true })
       fill_cost: 100,
       money_donated: 60,
       filled: false,
-      image: 'https://res.cloudinary.com/adopt-a-pothole/image/upload/v1572992370/pko97kuqohnya41ybhgg.jpg'
+      image: 'https://res.cloudinary.com/adopt-a-pothole/image/upload/v1572992370/pko97kuqohnya41ybhgg.jpg',
+      median_income: 30270,
     });
     Comment.create({
       pothole_id: 1,

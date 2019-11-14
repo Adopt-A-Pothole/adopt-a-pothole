@@ -1,5 +1,6 @@
 const { Router } = require('express');
 const axios = require('axios');
+const askGeo = require('./askGeo');
 
 require('dotenv').config();
 
@@ -38,17 +39,22 @@ routes.post('/potholes', (req, res) => {
     longitude
   } = req.body.pothole.location;
   // change to have longitude/latitude from address
-  Pothole.create({
-    longitude,
-    latitude,
-    severity,
-    title,
-    description,
-    fill_cost: severity * 200,
-    money_donated: 0,
-    filled: false,
-    image
-  })
+  askGeo(latitude, longitude)
+    .then((geoData) => {
+      return Pothole.create({
+        longitude,
+        latitude,
+        severity,
+        title,
+        description,
+        fill_cost: severity * 200,
+        money_donated: 0,
+        filled: false,
+        image,
+        zip: parseInt(geoData.UsZcta2010.GeoId, 10),
+        median_income: geoData.UsTract2010.AcsHouseholdIncomeMedian
+      });
+    })
     .then(() => {
       // TODO fix this
       res.send();

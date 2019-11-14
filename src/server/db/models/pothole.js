@@ -24,7 +24,7 @@ module.exports = (sequelize, type) => sequelize.define('pothole', {
   progress_image: {
     type: type.STRING,
     allowNull: true
-  }, // ? <-- y'all like this field name
+  },
   created_at: {
     type: 'TIMESTAMP',
     defaultValue: sequelize.literal('CURRENT_TIMESTAMP'),

@@ -23,7 +23,7 @@ paypal.configure({
 // require models
 const { User, Pothole, Comment } = require('./db/index');
 const {
-  saveUser, updateDonation, saveDonation, getAllComments
+  saveUser, updateDonation, saveDonation, getAllComments, getDonators,
 } = require('./db/helpers');
 
 routes.post('/potholes', (req, res) => {
@@ -215,6 +215,21 @@ routes.get('/pothole', (req, res) => {
   return Pothole.findOne({ where: { longitude, latitude } })
     .then(pothole => res.send(pothole));
   // get pothole from db based on location
+});
+
+routes.post('/pothole/donators/:pothole_id', (req, res) => {
+  // deconstructing pothole_id to
+  const { pothole_id } = req.params;
+  // pass in the pothole_id the helper function
+  getDonators(pothole_id)
+    .then((donators) => {
+      // send the list of donators for a specific pothole_id
+      res.send(donators);
+    })
+    .catch((err) => {
+      res.status(400);
+      console.log(err);
+    });
 });
 
 // handle reload errors

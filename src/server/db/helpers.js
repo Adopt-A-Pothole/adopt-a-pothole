@@ -44,6 +44,12 @@ const getAllComments = potholeId => Comment.findAll({
 // get all pothole Info for the helpANeighbor
 const getAllPothole = () => Pothole.findAll({});
 
+// get all medianIncome Info for the helpANeighbor
+const getMedianIncome = medianIncome => Pothole.findAll({
+  attributes: ['median_income'],
+  where: { median_income: medianIncome }
+});
+
 // get all the donators of a pothole
 const getDonators = potholdId => Donation.findAll({
   attributes: ['email'],
@@ -67,3 +73,4 @@ module.exports.updateDonation = updateDonation;
 module.exports.saveUser = saveUser;
 module.exports.getAllComments = getAllComments;
 module.exports.getAllPothole = getAllPothole;
+module.exports.getMedianIncome = getMedianIncome;

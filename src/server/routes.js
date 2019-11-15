@@ -29,6 +29,7 @@ const {
   getAllComments,
   getAllPothole,
   getDonators,
+  getMedianIncome
 } = require('./db/helpers');
 
 routes.post('/potholes', (req, res) => {
@@ -45,8 +46,7 @@ routes.post('/potholes', (req, res) => {
   } = req.body.pothole.location;
   // change to have longitude/latitude from address
   askGeo(latitude, longitude)
-    .then((geoData) => {
-      return Pothole.create({
+    .then((geoData) => Pothole.create({
         longitude,
         latitude,
         severity,
@@ -58,8 +58,7 @@ routes.post('/potholes', (req, res) => {
         image,
         zip: parseInt(geoData.UsZcta2010.GeoId, 10),
         median_income: geoData.UsTract2010.AcsHouseholdIncomeMedian
-      });
-    })
+      }))
     .then(() => {
       // TODO fix this
       res.send();
@@ -298,12 +297,19 @@ routes.post('/comments/:pothole_id', (req, res) => {
 // get all pothole Info for the helpANeighbor
 routes.get('/helpANeighbor', (req, res) => {
   getAllPothole()
-    .then((data) => {
-      res.send(data); // <-- send to client side
+    .then((potholes) => {
+      // sort the array of object by the lowest median_income
+      const results = potholes.sort((a, b) => {
+        if (a.median_income < b.median_income) return -1;
+        if (a.median_income > b.median_income) return 1;
+        return 0;
+      });
+      res.send(results);
     })
-    .catch(err => [
-      console.log(err)
-    ]);
+    .catch((err) => {
+      res.sendStatus(400);
+      console.log(err);
+    });
 });
 
 module.exports = { routes };

@@ -22,7 +22,11 @@ paypal.configure({
 // require models
 const { User, Pothole, Comment } = require('./db/index');
 const {
- saveUser, updateDonation, saveDonation, getAllComments 
+  saveUser,
+  updateDonation,
+  saveDonation,
+  getAllComments,
+  getAllPothole
 } = require('./db/helpers');
 
 routes.post('/potholes', (req, res) => {
@@ -268,4 +272,16 @@ routes.post('/comments/:pothole_id', (req, res) => {
       console.log(err);
     });
 });
+
+// get all pothole Info for the helpANeighbor
+routes.get('/helpANeighbor', (req, res) => {
+  getAllPothole()
+    .then((data) => {
+      res.send(data); // <-- send to client side
+    })
+    .catch(err => [
+      console.log(err)
+    ]);
+});
+
 module.exports = { routes };

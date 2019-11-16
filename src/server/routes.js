@@ -27,10 +27,9 @@ const {
   updateDonation,
   saveDonation,
   getAllComments,
-  getAllPothole,
-  getDonators,
-  getMedianIncome
-} = require('./db/helpers');
+  getLowestMedianIncome,
+  getDonators
+} = require("./db/helpers");
 
 routes.post('/potholes', (req, res) => {
   // grab incoming pothole info
@@ -46,19 +45,19 @@ routes.post('/potholes', (req, res) => {
   } = req.body.pothole.location;
   // change to have longitude/latitude from address
   askGeo(latitude, longitude)
-    .then((geoData) => Pothole.create({
-        longitude,
-        latitude,
-        severity,
-        title,
-        description,
-        fill_cost: severity * 200,
-        money_donated: 0,
-        filled: false,
-        image,
-        zip: parseInt(geoData.UsZcta2010.GeoId, 10),
-        median_income: geoData.UsTract2010.AcsHouseholdIncomeMedian
-      }))
+    .then(geoData => Pothole.create({
+      longitude,
+      latitude,
+      severity,
+      title,
+      description,
+      fill_cost: severity * 200,
+      money_donated: 0,
+      filled: false,
+      image,
+      zip: parseInt(geoData.UsZcta2010.GeoId, 10),
+      median_income: geoData.UsTract2010.AcsHouseholdIncomeMedian
+    }))
     .then(() => {
       // TODO fix this
       res.send();
@@ -296,15 +295,12 @@ routes.post('/comments/:pothole_id', (req, res) => {
 
 // get all pothole Info for the helpANeighbor
 routes.get('/helpANeighbor', (req, res) => {
-  getAllPothole()
+  getLowestMedianIncome()
     .then((potholes) => {
-      // sort the array of object by the lowest median_income
-      const results = potholes.sort((a, b) => {
-        if (a.median_income < b.median_income) return -1;
-        if (a.median_income > b.median_income) return 1;
-        return 0;
-      });
-      res.send(results);
+      if (potholes.length > 4) {
+        potholes = potholes.slice(0, 4);
+      }
+      res.send(potholes);
     })
     .catch((err) => {
       res.sendStatus(400);

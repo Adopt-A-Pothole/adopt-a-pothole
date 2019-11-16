@@ -248,7 +248,7 @@ routes.put('/pothole/:pothole_id/image', (req, res) => {
   const { progressImage } = req.body;
   Pothole.update(
     { progress_image: progressImage },
-    { returning: true, where: { id: pothole_id } }
+    { where: { id: pothole_id } }
   )
     .then(() => {
       res.sendStatus(202);

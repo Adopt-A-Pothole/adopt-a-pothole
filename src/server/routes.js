@@ -31,6 +31,9 @@ const {
   getDonators
 } = require("./db/helpers");
 
+
+// ------------  POTHOLES ROUTES ---------------------//
+
 routes.post('/potholes', (req, res) => {
   // grab incoming pothole info
   const {
@@ -81,6 +84,7 @@ routes.get('/potholes', (req, res) => Pothole.findAll(
     res.send(500);
   }));
 
+// ------------ USERS ROUTES ---------------------//
 // get route to get a user
 routes.get('/users', (req, res) => {
   // save user to db
@@ -113,6 +117,7 @@ routes.post('/users', (req, res) => {
     });
 });
 
+// ------------ DONATION PAYMENT ROUTES ---------------------//
 
 // post route to make a paypal payment
 routes.post('/donate', (req, res) => {
@@ -211,6 +216,7 @@ routes.get('/cancel', (req, res) => {
   res.redirect('/');
 });
 
+// ------------ SINGLE POTHOLE ROUTES ---------------------//
 
 routes.get('/pothole', (req, res) => {
   let longitude;
@@ -235,6 +241,25 @@ routes.post('/pothole/donators/:pothole_id', (req, res) => {
     });
 });
 
+// update a pothole image with progress image
+routes.put('/pothole/:pothole_id/image', (req, res) => {
+  // pothole id and progress image should be strings
+  const { pothole_id } = req.params;
+  const { progressImage } = req.body;
+  Pothole.update(
+    { progress_image: progressImage },
+    { where: { id: pothole_id } }
+  )
+    .then(() => {
+      res.sendStatus(202);
+    })
+    .catch((err) => {
+      res.sendStatus(400);
+      console.log(err);
+    });
+});
+
+
 // handle reload errors
 routes.get('/create', (req, res) => {
   res.redirect('/');
@@ -257,6 +282,8 @@ routes.get('/location', (req, res) => {
       res.end();
     });
 });
+
+// ------------ COMMENTS ROUTES ---------------------//
 
 // post the comments in the db
 routes.post('/comments', (req, res) => {
@@ -292,6 +319,8 @@ routes.post('/comments/:pothole_id', (req, res) => {
       console.log(err);
     });
 });
+
+// ------------ HelpANeighbor ROUTES ---------------------//
 
 // get all pothole Info for the helpANeighbor
 routes.get('/helpANeighbor', (req, res) => {

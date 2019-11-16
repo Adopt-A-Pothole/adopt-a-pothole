@@ -1,5 +1,5 @@
 const {
- User, Pothole, Donation, Comment
+  User, Pothole, Donation, Comment
 } = require('./index');
 
 // save user to the database
@@ -41,6 +41,20 @@ const getAllComments = potholeId => Comment.findAll({
   where: { pothole_id: potholeId },
 });
 
+// get all pothole Info for the helpANeighbor
+const getLowestMedianIncome = () => {
+  return Pothole.findAll({
+    where: { filled: false },
+  })
+    .then((potholes) => {
+      return potholes.sort((a, b) => {
+        if (a.median_income < b.median_income) return -1;
+        if (a.median_income > b.median_income) return 1;
+        return 0;
+      });
+    });
+};
+
 // get all the donators of a pothole
 const getDonators = potholdId => Donation.findAll({
   attributes: ['email'],
@@ -63,3 +77,4 @@ module.exports.saveDonation = saveDonation;
 module.exports.updateDonation = updateDonation;
 module.exports.saveUser = saveUser;
 module.exports.getAllComments = getAllComments;
+module.exports.getLowestMedianIncome = getLowestMedianIncome;

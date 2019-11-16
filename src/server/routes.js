@@ -217,6 +217,14 @@ routes.get('/pothole', (req, res) => {
   // get pothole from db based on location
 });
 
+routes.get('/pothole/:id', (req, res) => {
+  const { id } = req.params;
+  Pothole.findOne({ where: { id, } })
+    .then((pothole) => {
+      res.json(pothole);
+    });
+});
+
 // handle reload errors
 routes.get('/create', (req, res) => {
   res.redirect('/');
@@ -246,6 +254,7 @@ routes.post('/comments', (req, res) => {
   Comment.create({
     pothole_id: req.body.pothole_id,
     user_id: req.body.user_id,
+    user_name: req.body.user,
     message: req.body.message,
   })
     .then(() => {
@@ -260,7 +269,7 @@ routes.post('/comments', (req, res) => {
 });
 
 //  get all the comments from the db and sends to frontEnd
-routes.post('/comments/:pothole_id', (req, res) => {
+routes.get('/comments/:pothole_id', (req, res) => {
   // deconstructing pothole_id to
   const { pothole_id } = req.params;
   // pass in the pothole_id the helper function

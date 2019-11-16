@@ -23,8 +23,13 @@ paypal.configure({
 // require models
 const { User, Pothole, Comment } = require('./db/index');
 const {
-  saveUser, updateDonation, saveDonation, getAllComments, getDonators,
-} = require('./db/helpers');
+  saveUser,
+  updateDonation,
+  saveDonation,
+  getAllComments,
+  getLowestMedianIncome,
+  getDonators
+} = require("./db/helpers");
 
 routes.post('/potholes', (req, res) => {
   // grab incoming pothole info
@@ -40,21 +45,19 @@ routes.post('/potholes', (req, res) => {
   } = req.body.pothole.location;
   // change to have longitude/latitude from address
   askGeo(latitude, longitude)
-    .then((geoData) => {
-      return Pothole.create({
-        longitude,
-        latitude,
-        severity,
-        title,
-        description,
-        fill_cost: severity * 200,
-        money_donated: 0,
-        filled: false,
-        image,
-        zip: parseInt(geoData.UsZcta2010.GeoId, 10),
-        median_income: geoData.UsTract2010.AcsHouseholdIncomeMedian
-      });
-    })
+    .then(geoData => Pothole.create({
+      longitude,
+      latitude,
+      severity,
+      title,
+      description,
+      fill_cost: severity * 200,
+      money_donated: 0,
+      filled: false,
+      image,
+      zip: parseInt(geoData.UsZcta2010.GeoId, 10),
+      median_income: geoData.UsTract2010.AcsHouseholdIncomeMedian
+    }))
     .then(() => {
       // TODO fix this
       res.send();
@@ -289,4 +292,20 @@ routes.post('/comments/:pothole_id', (req, res) => {
       console.log(err);
     });
 });
+
+// get all pothole Info for the helpANeighbor
+routes.get('/helpANeighbor', (req, res) => {
+  getLowestMedianIncome()
+    .then((potholes) => {
+      if (potholes.length > 4) {
+        potholes = potholes.slice(0, 4);
+      }
+      res.send(potholes);
+    })
+    .catch((err) => {
+      res.sendStatus(400);
+      console.log(err);
+    });
+});
+
 module.exports = { routes };

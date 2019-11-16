@@ -104,21 +104,25 @@ db.sync({ force: true })
     Comment.create({
       pothole_id: 1,
       user_id: 1,
+      user_name: 'Abel Terefe',
       message: "Wow this the biggest hole I've seen"
     });
     Comment.create({
       pothole_id: 2,
       user_id: 2,
+      user_name: 'Amber Jones',
       message: 'HOLY MOLY NOW THATS WHAT I CALL A HOLE',
     });
     Comment.create({
       pothole_id: 2,
       user_id: 2,
+      user_name: 'Amber Jones',
       message: 'YO, who made this HOLE???',
     });
     Comment.create({
       pothole_id: 3,
       user_id: 3,
+      user_name: 'Eliott Frilet',
       message: 'WHO MADE THIS POTHOLE SHIA LABEOUF',
     });
   });

@@ -14,6 +14,7 @@ import CreatePothole from './components/CreatePothole';
 import Pothole from './components/Pothole';
 import MapContainer from './components/Map';
 import PotholeList from './components/PotholeList';
+import HelpANeighbor from './components/HelpANeighbor';
 import NavBar from './components/NavBar';
 
 // A function that routes the user to the right place
@@ -49,7 +50,7 @@ const routing = (
           All Potholes
         </Menu.Item>
         <Menu.Item as={Link} to="/helpANeighbor">
-          All Potholes
+          Help A Neighbor
         </Menu.Item>
         <Menu.Menu position="right">
           <Auth0Provider
@@ -67,6 +68,7 @@ const routing = (
       <Route path="/pothole" component={Pothole} />
       <Route path="/map" component={MapContainer} />
       <Route path="/list" component={PotholeList} />
+      <Route path="/helpANeighbor" component={HelpANeighbor} />
     </div>
   </Router>
 );

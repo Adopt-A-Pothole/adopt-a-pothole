@@ -14,6 +14,7 @@ import CreatePothole from './components/CreatePothole';
 import Pothole from './components/Pothole';
 import MapContainer from './components/Map';
 import PotholeList from './components/PotholeList';
+import PotholeProfile from './components/PotholeProfile';
 import NavBar from './components/NavBar';
 
 // A function that routes the user to the right place
@@ -64,6 +65,7 @@ const routing = (
       <Route path="/pothole" component={Pothole} />
       <Route path="/map" component={MapContainer} />
       <Route path="/list" component={PotholeList} />
+      <Route path="/profile/:id" render={props => <PotholeProfile {...props} />} />
     </div>
   </Router>
 );

@@ -225,7 +225,7 @@ routes.get('/pothole/:id', (req, res) => {
     });
 });
 
-routes.post('/pothole/donators/:pothole_id', (req, res) => {
+routes.get('/pothole/donators/:pothole_id', (req, res) => {
   // deconstructing pothole_id to
   const { pothole_id } = req.params;
   // pass in the pothole_id the helper function

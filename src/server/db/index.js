@@ -127,8 +127,8 @@ db.sync({ force: true })
     });
 
     Donation.create({
-      amount: 10.00,
-      email: 'amberJones@gmail.com',
+      amount: 80.00,
+      email: 'eliottFrilet@yahoo.com',
       pothole_id: 2,
     });
 
@@ -139,9 +139,21 @@ db.sync({ force: true })
     });
 
     Donation.create({
-      amount: 1.00,
+      amount: 60.00,
       email: 'amberJones@gmail.com',
-      pothole_id: 2,
+      pothole_id: 3,
+    });
+
+    Donation.create({
+      amount: 30.00,
+      email: 'abelterefe98@hotmail.com',
+      pothole_id: 1,
+    });
+
+    Donation.create({
+      amount: 20.00,
+      email: 'eliottFrilet@yahoo.com',
+      pothole_id: 1,
     });
   });
 

@@ -25,11 +25,12 @@ export default class PotholeProfile extends Component {
       comments: [],
       donators: [],
       progressImage: null,
-      comment: '',
+      text: '',
     };
     this.handleImageProgress = this.handleImageProgress.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
+    this.componentDidMount = this.componentDidMount.bind(this);
   }
 
   componentDidMount() {
@@ -56,20 +57,20 @@ export default class PotholeProfile extends Component {
   }
 
   onSubmit() {
-    const { comment, potholeId } = this.state;
-    axios.post('/comments', {
+    const { text, potholeId } = this.state;
+    return axios.post('/comments', {
       pothole_id: potholeId,
       user_id: 3,
       user: 'Eliott Frilet',
-      message: comment,
+      message: text,
     })
       .then(() => {
-        axios.get(`/comments/${potholeId}`)
-          .then((comments) => {
-            this.setState({
-              comments,
-            });
-          });
+        this.setState({
+          text: '',
+        });
+      })
+      .then(() => {
+        this.componentDidMount();
       });
   }
 
@@ -84,9 +85,9 @@ export default class PotholeProfile extends Component {
   }
 
   handleChange(event) {
-    const comment = event.target.value;
+    const text = event.target.value;
     this.setState({
-      comment,
+      text
     });
   }
 
@@ -95,6 +96,7 @@ export default class PotholeProfile extends Component {
     const {
       pothole,
       comments,
+      text,
       donators,
       progressImage
     } = this.state;
@@ -143,7 +145,7 @@ export default class PotholeProfile extends Component {
         <Grid.Row>
           <Grid.Column textAlign="center" width={9}>
             <Form>
-              <Form.TextArea label="Comment" placeholder="Write your comment here..." onChange={this.handleChange} />
+              <Form.TextArea label="Comment" placeholder="Write your comment here..." value={text} onChange={this.handleChange} />
               <Form.Button onClick={this.onSubmit}>Submit</Form.Button>
             </Form>
             <Header as="h2" dividing>

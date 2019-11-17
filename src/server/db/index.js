@@ -117,27 +117,31 @@ db.sync({ force: true })
     Comment.create({
       pothole_id: 1,
       user_id: 1,
+      user_name: 'Abel Terefe',
       message: "Wow this the biggest hole I've seen"
     });
     Comment.create({
       pothole_id: 2,
       user_id: 2,
+      user_name: 'Amber Jones',
       message: 'HOLY MOLY NOW THATS WHAT I CALL A HOLE',
     });
     Comment.create({
       pothole_id: 2,
       user_id: 2,
+      user_name: 'Amber Jones',
       message: 'YO, who made this HOLE???',
     });
     Comment.create({
       pothole_id: 3,
       user_id: 3,
+      user_name: 'Eliott Frilet',
       message: 'WHO MADE THIS POTHOLE SHIA LABEOUF',
     });
 
     Donation.create({
-      amount: 10.00,
-      email: 'amberJones@gmail.com',
+      amount: 80.00,
+      email: 'eliottFrilet@yahoo.com',
       pothole_id: 2,
     });
 
@@ -148,9 +152,21 @@ db.sync({ force: true })
     });
 
     Donation.create({
-      amount: 1.00,
+      amount: 60.00,
       email: 'amberJones@gmail.com',
-      pothole_id: 2,
+      pothole_id: 3,
+    });
+
+    Donation.create({
+      amount: 30.00,
+      email: 'abelterefe98@hotmail.com',
+      pothole_id: 1,
+    });
+
+    Donation.create({
+      amount: 20.00,
+      email: 'eliottFrilet@yahoo.com',
+      pothole_id: 1,
     });
   });
 

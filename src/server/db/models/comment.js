@@ -1,6 +1,7 @@
 module.exports = (sequelize, type) => sequelize.define('comment', {
   pothole_id: type.INTEGER,
   user_id: type.INTEGER,
+  user_name: type.STRING,
   message: type.STRING(200),
   createdAt: {
     type: 'TIMESTAMP',

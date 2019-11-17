@@ -14,6 +14,7 @@ import CreatePothole from './components/CreatePothole';
 import Pothole from './components/Pothole';
 import MapContainer from './components/Map';
 import PotholeList from './components/PotholeList';
+import PotholeProfile from './components/PotholeProfile';
 import HelpANeighbor from './components/HelpANeighbor';
 import NavBar from './components/NavBar';
 
@@ -68,6 +69,7 @@ const routing = (
       <Route path="/pothole" component={Pothole} />
       <Route path="/map" component={MapContainer} />
       <Route path="/list" component={PotholeList} />
+      <Route path="/profile/:id" render={props => <PotholeProfile {...props} />} />
       <Route path="/helpANeighbor" component={HelpANeighbor} />
     </div>
   </Router>

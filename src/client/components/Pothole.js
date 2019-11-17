@@ -85,7 +85,7 @@ export default class Pothole extends Component {
         <Container textAlign="center">
           <Button type="button" onClick={() => { onClick(index); }}>Next</Button>
           <Card className="ui centered card">
-            <Image src={image} wrapped ui={false} />
+            <Image src={image} avatar style={{ fontSize: 150 }} />
             <Card.Content>
               <Card.Header>{title}</Card.Header>
               <Card.Meta>

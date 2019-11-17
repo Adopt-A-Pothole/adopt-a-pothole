@@ -101,6 +101,19 @@ db.sync({ force: true })
       filled: false,
       image: 'https://res.cloudinary.com/adopt-a-pothole/image/upload/v1572992370/pko97kuqohnya41ybhgg.jpg',
     });
+    Pothole.create({
+      zip: 70115,
+      median_income: 26000,
+      longitude: -90.080922,
+      latitude: 29.959415,
+      severity: 3,
+      title: 'S. O. S.',
+      description: 'Save our Souls!',
+      fill_cost: 100,
+      money_donated: 80,
+      filled: false,
+      image: 'https://res.cloudinary.com/adopt-a-pothole/image/upload/v1572992370/pko97kuqohnya41ybhgg.jpg',
+    });
     Comment.create({
       pothole_id: 1,
       user_id: 1,

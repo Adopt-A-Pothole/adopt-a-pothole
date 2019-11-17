@@ -1,6 +1,17 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import { Comment, Image, Grid, Header, List, Progress, Item, Rating } from 'semantic-ui-react';
+import {
+  Comment,
+  Image,
+  Grid,
+  Header,
+  List,
+  Progress,
+  Item,
+  Rating,
+  Card,
+  Form
+} from 'semantic-ui-react';
 import PotholeComment from './PotholeComment';
 import UploadPothole from './UploadPothole';
 
@@ -13,8 +24,12 @@ export default class PotholeProfile extends Component {
       potholeId: params.id,
       comments: [],
       donators: [],
+      progressImage: null,
+      comment: '',
     };
-    // const { match: { params } } = this.props;
+    this.handleImageProgress = this.handleImageProgress.bind(this);
+    this.handleChange = this.handleChange.bind(this);
+    this.onSubmit = this.onSubmit.bind(this);
   }
 
   componentDidMount() {
@@ -23,6 +38,7 @@ export default class PotholeProfile extends Component {
       .then((pothole) => {
         this.setState({
           pothole: pothole.data,
+          progressImage: pothole.data.progress_image,
         });
         return axios.get(`/comments/${potholeId}`);
       })
@@ -39,19 +55,64 @@ export default class PotholeProfile extends Component {
       });
   }
 
+  onSubmit() {
+    const { comment, potholeId } = this.state;
+    axios.post('/comments', {
+      pothole_id: potholeId,
+      user_id: 3,
+      user: 'Eliott Frilet',
+      message: comment,
+    })
+      .then(() => {
+        axios.get(`/comments/${potholeId}`)
+          .then((comments) => {
+            this.setState({
+              comments,
+            });
+          });
+      });
+  }
+
   handleImageProgress(url) {
-    axios.post('/');
+    const { potholeId } = this.state;
+    axios.put(`/pothole/${potholeId}/image`, {
+      progressImage: url,
+    });
+    this.setState({
+      progressImage: null,
+    });
+  }
+
+  handleChange(event) {
+    const comment = event.target.value;
+    this.setState({
+      comment,
+    });
   }
 
   render() {
-    const { pothole, comments, donators } = this.state;
+    const { handleImageProgress } = this;
+    const {
+      pothole,
+      comments,
+      donators,
+      progressImage
+    } = this.state;
     const progress = Math.floor((pothole.money_donated / pothole.fill_cost) * 100);
     return (
       <Grid>
         <Grid.Row>
           <Grid.Column width={3}>
-            <Image src={pothole.image} size="medium" />
-            <UploadPothole success={handleImageProgress} />
+            <Card>
+              <Image src={pothole.image} size="medium" />
+            </Card>
+            <Header>Progress image:</Header>
+            <Card>
+              {pothole.progress_image ? (
+                <Image src={progressImage} />
+              ) : null}
+              <UploadPothole success={handleImageProgress} />
+            </Card>
           </Grid.Column>
           <Grid.Column width={12}>
             <Item.Group>
@@ -81,6 +142,10 @@ export default class PotholeProfile extends Component {
         </Grid.Row>
         <Grid.Row>
           <Grid.Column textAlign="center" width={9}>
+            <Form>
+              <Form.TextArea label="Comment" placeholder="Write your comment here..." onChange={this.handleChange} />
+              <Form.Button onClick={this.onSubmit}>Submit</Form.Button>
+            </Form>
             <Header as="h2" dividing>
               Comments
             </Header>
@@ -93,7 +158,7 @@ export default class PotholeProfile extends Component {
               Donators
             </Header>
             <List bulleted style={{ 'font-size': 16 }}>
-              {donators.map(donator => <List.Item>{donator.full_name}</List.Item>)}
+              {donators.map(donator => <List.Item key={donator.full_name}>{donator.full_name}</List.Item>)}
             </List>
           </Grid.Column>
         </Grid.Row>

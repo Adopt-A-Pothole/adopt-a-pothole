@@ -18,7 +18,7 @@ export default class HelpANeighbor extends Component {
   }
 
   componentDidMount() {
-    axios.get('/helpANeighbor')
+    axios.get('/neighbor')
       .then((response) => {
         this.setState({
           potholes: response.data // ! <-- response is an array of objects

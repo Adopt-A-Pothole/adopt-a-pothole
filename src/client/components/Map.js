@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { Map, GoogleApiWrapper, Marker } from 'google-maps-react';
+import { Container } from 'semantic-ui-react';
+
 import axios from 'axios';
 
 export class MapContainer extends Component {
@@ -38,21 +40,24 @@ export class MapContainer extends Component {
 
   render() {
     const style = {
-      width: 'flex',
-      height: 'flex',
-      align: 'center',
+      map: {
+        width: 'flex',
+        height: 'flex',
+      },
     };
     const { google } = this.props;
 
     return (
-      <Map
-        google={google}
-        zoom={8}
-        style={style}
-        initialCenter={{ lat: 29.951065, lng: -90.071533 }}
-      >
-        {this.displayMarkers()}
-      </Map>
+      <div>
+        <Map
+          google={google}
+          zoom={12}
+          style={style.map}
+          initialCenter={{ lat: 29.951065, lng: -90.071533 }}
+        >
+          {this.displayMarkers()}
+        </Map>
+      </div>
     );
   }
 }

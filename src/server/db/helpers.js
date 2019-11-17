@@ -56,9 +56,9 @@ const getLowestMedianIncome = () => {
 };
 
 // get all the donators of a pothole
-const getDonators = potholdId => Donation.findAll({
+const getDonators = potholeId => Donation.findAll({
   attributes: ['email'],
-  where: { pothole_id: potholdId }
+  where: { pothole_id: potholeId }
 })
 //  map over the array of eamil objects to return an array of emails
   .then(userEmails => userEmails.map(
@@ -71,6 +71,7 @@ const getDonators = potholdId => Donation.findAll({
       email: userEmail,
     }
   }));
+
 
 module.exports.getDonators = getDonators;
 module.exports.saveDonation = saveDonation;

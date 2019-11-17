@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import {
   Item,
   Image,
@@ -9,13 +10,14 @@ import {
 
 const PotholeItem = ({ pothole }) => {
   const progress = Math.floor((pothole.money_donated / pothole.fill_cost) * 100);
+  const profile = `/profile/${pothole.id}`;
   return (
     <Segment>
       <Item.Group>
         <Item>
           <Image src={pothole.image} avatar style={{ fontSize: 50 }} />
           <Item.Content>
-            <Item.Header as="a">{pothole.title}</Item.Header>
+            <Item.Header as={Link} to={profile}>{pothole.title}</Item.Header>
             <Item.Meta>Description</Item.Meta>
             <Item.Description style={{ fontSize: 16 }}>{pothole.description}</Item.Description>
             <Item.Description style={{ fontSize: 12 }}>

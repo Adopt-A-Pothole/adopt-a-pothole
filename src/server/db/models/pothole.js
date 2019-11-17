@@ -22,7 +22,7 @@ module.exports = (sequelize, type) => sequelize.define('pothole', {
   filled: type.BOOLEAN,
   image: type.STRING, // ! represent the orginal pic of the pothole
   progress_image: {
-    type: type.STRING,
+    type: type.STRING(500),
     allowNull: true
   },
   created_at: {

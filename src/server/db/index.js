@@ -103,12 +103,12 @@ db.sync({ force: true })
     });
     Pothole.create({
       zip: 70115,
-      median_income: 60000,
+      median_income: 26000,
       longitude: -90.080922,
       latitude: 29.959415,
-      severity: 2,
-      title: 'Quick hole to fix!',
-      description: 'Lets fix our roads!',
+      severity: 3,
+      title: 'S. O. S.',
+      description: 'Save our Souls!',
       fill_cost: 100,
       money_donated: 80,
       filled: false,

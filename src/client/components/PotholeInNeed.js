@@ -16,7 +16,7 @@ const PotholeInNeed = ({ pothole, donationForm, toggleDonation, handleDonationIn
     <div id="pothole-profile">
       <Container textAlign="center">
         <Card className="ui centered card">
-          <Image src={pothole.image} wrapped ui={false} />
+          <Image src={pothole.image} avatar style={{ fontSize: 150 }} />
           <Card.Content>
             <Card.Header>{pothole.title}</Card.Header>
             <Card.Meta>

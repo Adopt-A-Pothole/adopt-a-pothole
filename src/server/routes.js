@@ -244,7 +244,7 @@ routes.get('/pothole/donators/:pothole_id', (req, res) => {
       res.send(donators);
     })
     .catch((err) => {
-      res.status(400);
+      res.sendStatus(400);
       console.log(err);
     });
 });
@@ -304,11 +304,11 @@ routes.post('/comments', (req, res) => {
   })
     .then(() => {
       // send the status code to client
-      res.status(201);
+      res.sendStatus(201);
     })
     // if there is an error it'll be console log and a 500 status code will be sent
     .catch((err) => {
-      res.status(500);
+      res.sendStatus(500);
       console.log(`ERROR: ${err}`);
     });
 });
@@ -324,7 +324,7 @@ routes.get('/comments/:pothole_id', (req, res) => {
       res.send(comments);
     })
     .catch((err) => {
-      res.status(400);
+      res.sendStatus(400);
       console.log(err);
     });
 });

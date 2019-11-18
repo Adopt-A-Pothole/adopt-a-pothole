@@ -64,6 +64,7 @@ export default class HelpANeighbor extends Component {
     } = this.state;
     if (potholes !== null && potholes.length) { // <-- if not null and the lengeth is greater than 1
       return (
+        <div>
         <Grid columns="four">
           <Grid.Row>
             {Object.keys(potholes).map(pothole => (
@@ -79,6 +80,7 @@ export default class HelpANeighbor extends Component {
             ))}
           </Grid.Row>
         </Grid>
+        </div>
       );
     } else {
       return <h3>Loading potholes...</h3>;

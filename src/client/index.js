@@ -50,7 +50,7 @@ const routing = (
         <Menu.Item as={Link} to="/list">
           All Potholes
         </Menu.Item>
-        <Menu.Item as={Link} to="/helpANeighbor">
+        <Menu.Item as={Link} to="/neighbor">
           Help A Neighbor
         </Menu.Item>
         <Menu.Menu position="right">
@@ -70,7 +70,7 @@ const routing = (
       <Route path="/map" component={MapContainer} />
       <Route path="/list" component={PotholeList} />
       <Route path="/profile/:id" render={props => <PotholeProfile {...props} />} />
-      <Route path="/helpANeighbor" component={HelpANeighbor} />
+      <Route path="/neighbor" component={HelpANeighbor} />
     </div>
   </Router>
 );

@@ -332,7 +332,7 @@ routes.get('/comments/:pothole_id', (req, res) => {
 // ------------ HelpANeighbor ROUTES ---------------------//
 
 // get all pothole Info for the helpANeighbor
-routes.get('/helpANeighbor', (req, res) => {
+routes.get('/neighbor', (req, res) => {
   getLowestMedianIncome()
     .then((potholes) => {
       if (potholes.length > 4) {

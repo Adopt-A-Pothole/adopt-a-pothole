@@ -28,7 +28,7 @@ const PotholeInNeed = ({ pothole, donationForm, toggleDonation, handleDonationIn
             <p>How bad is it?</p>
             <Rating
               defaultRating={0}
-              rating={pothole.rating}
+              rating={pothole.severity}
               maxRating={3}
               disabled
             />

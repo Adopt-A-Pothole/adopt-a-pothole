@@ -1,6 +1,6 @@
-# Project Name
+# Adopt-A-Pothole
 
-> Adopt-A-Pothole
+> A crowdfunding application for New Orleans residents to sponsor the repair of potholes.
 
 ## Table of Contents
 

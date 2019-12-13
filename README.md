@@ -14,50 +14,18 @@
 ## Team
 
 - __Product Owner__: Jade
-  - __Scrum Master__: Avery
-  - __Development Team Members__: Brandon, Titus
+- __Scrum Master__: Avery
+- __Development Team Members__: Brandon, Titus
 
 ## Usage
 
-This app is designed for use in a web browser, as well as with mobile platforms. Once a user signs-up or logs in, he/she can scroll through photos of previously uploaded potholes and make donations of any amount chosen by the user. The user can also add a pothole with a name, location, severity rating and image of the pothole to the Adopt-A-Pothole app.
+Web application available accross platforms (desktop, tablet, and mobile).  Users are able to to create crowdfunding campaigns for neighborhood potholes.  They can also find potholes submitted by other users and donate to them using PayPal.
 
 ## Requirements
 
-- Axios 0.19
-- Babel-polyfill 6.26
-- Body-parser 1.19
-- Cookie-parser 1.4.4
-- Cookie-session 1.3.3
-- Cors 2.8.5
-- Dotenv 8.2.0
-- Google-maps-react 2.0.2
-- MySQL2 2.0
-- NPM 6.13.0
-- Passport 0.4.0
-- Passport-google-oauth 2.0
-- Paypal-rest-sdk 1.8.1
-- Prop-types 15.7.2
-- React 16.11
-- React-dom 16.5.2
-- React-rating 2.0
-- React-router-dom 5.1.2
-- Semantic-ui-css 2.4.1
-- Semantic-ui-react 0.88.1
-- Sequelize 5.21.2
-- Url-loader 1.0.1
-- Webpack 4.5
-- Webpack-cli 3.0.8
-- Webpack-dev-server 3.1.3
+- Node.js
 
 ## Development
-
-### Installing Dependencies
-
-From within the root directory:
-
-npm install --save
-npm start
-enter in web browser: localhost:8080
 
 ### Roadmap
 
@@ -65,6 +33,17 @@ Fork & Clone Repo from:
 
 <https://github.com/Adopt-A-Pothole/adopt-a-pothole>
 
+### Installing Dependencies
+
+From within the root directory:
+ - `npm install`
+ - `npm start`
+ - Visit [localhost:8080](http://localhost:8080) in your favorite web browser
+
 ## Contributing
 
-See Greenlight
+1. Fork the project and clone it to your local machine.
+2. Create a branch with your GitHub username as a prefix, for example: `git checkout -b USERNAME/new-feature` or `git checkout -b USERNAME/fixing-bug` where USERNAME should be replaced by your username.
+3. Code and commit your changes.
+4. Push to the branch: `git push origin USERNAME/new-feature`
+5. Create a pull request for your branch

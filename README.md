@@ -4,12 +4,12 @@
 
 ## Table of Contents
 
-[Team](#team)
-[Usage](#Usage)
-[Requirements](#requirements)
-[Development](#development)
-[Installing Dependencies](#installing-dependencies)
-[Contributing](#contributing)
+> [Team](#team)
+> [Usage](#Usage)
+> [Requirements](#requirements)
+> [Development](#development)
+> [Installing Dependencies](#installing-dependencies)
+> [Contributing](#contributing)
 
 ## Team
 
